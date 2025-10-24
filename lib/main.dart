@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'features/signup/presentation/views/signup_view.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -9,6 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Exam App', home: const Scaffold());
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Exam App',
+      home: SignupView(),
+    );
   }
 }
