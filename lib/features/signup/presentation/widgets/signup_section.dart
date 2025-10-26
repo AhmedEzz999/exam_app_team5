@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_strings.dart';
 import 'email_field.dart';
@@ -59,9 +60,8 @@ class _SignupSectionState extends State<SignupSection> {
       autovalidateMode: _autovalidateMode,
       child: Column(
         children: [
-          const SizedBox(height: 16),
           UsernameField(controller: _usernameController),
-          const SizedBox(height: 24),
+          SizedBox(height: 16.h),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -71,7 +71,7 @@ class _SignupSectionState extends State<SignupSection> {
                   controller: _firstNameController,
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 10.w),
               Expanded(
                 child: NameField(
                   label: AppStrings.lastNameLabel,
@@ -80,9 +80,9 @@ class _SignupSectionState extends State<SignupSection> {
               ),
             ],
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 16.h),
           EmailField(controller: _emailController),
-          const SizedBox(height: 24),
+          SizedBox(height: 16.h),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -93,7 +93,7 @@ class _SignupSectionState extends State<SignupSection> {
                   isConfirm: false,
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 10.h),
               Expanded(
                 child: PasswordField(
                   controller: _confirmPasswordController,
@@ -104,9 +104,9 @@ class _SignupSectionState extends State<SignupSection> {
               ),
             ],
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 16.h),
           PhoneField(controller: _phoneController),
-          const SizedBox(height: 28),
+          SizedBox(height: 38.h),
           SignupButton(
             signupFormKey: _signupFormKey,
             onAutovalidateModeChanged: (mode) {

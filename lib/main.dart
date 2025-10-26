@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/constants/app_strings.dart';
 import 'features/signup/presentation/views/signup_view.dart';
@@ -12,10 +13,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: AppStrings.appName,
-      home: SignupView(),
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) => const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: AppStrings.appName,
+        home: SignupView(),
+      ),
     );
   }
 }
