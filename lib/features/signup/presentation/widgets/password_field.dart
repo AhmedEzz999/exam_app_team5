@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_strings.dart';
+
 class PasswordField extends StatelessWidget {
   const PasswordField({
     required this.controller,
@@ -14,10 +17,10 @@ class PasswordField extends StatelessWidget {
   final bool isConfirm;
 
   String? _validator(String? value) {
-    if (value == null || value.isEmpty) return '$label is required';
-    if (!isConfirm && value.length < 8) return 'Password min 8 chars';
+    if (value == null || value.isEmpty) return AppStrings.fieldRequired.replaceFirst('{field}', AppStrings.passwordLabel);
+    if (!isConfirm && value.length < 8) return AppStrings.passwordMin;
     if (isConfirm && value != compareWith?.text) {
-      return 'Passwords do not match';
+      return AppStrings.passwordMismatch;
     }
     return null;
   }
@@ -28,14 +31,16 @@ class PasswordField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         labelText: label,
-        hintText: isConfirm ? 'Confirm password' : 'Enter password',
+        hintText: isConfirm
+            ? AppStrings.confirmPasswordHint
+            : AppStrings.passwordHint,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         border: const OutlineInputBorder(),
         errorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red, width: 2),
+          borderSide: BorderSide(color: AppColors.errorBorderColor, width: 2),
         ),
         focusedErrorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red, width: 2),
+          borderSide: BorderSide(color: AppColors.errorBorderColor, width: 2),
         ),
       ),
       obscureText: true,

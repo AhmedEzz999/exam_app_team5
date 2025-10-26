@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_strings.dart';
+
 class UsernameField extends StatelessWidget {
   const UsernameField({required this.controller, super.key});
   final TextEditingController controller;
 
   String? _validator(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'User name is required';
+      return AppStrings.fieldRequired.replaceFirst(
+        '{field}',
+        AppStrings.usernameLabel,
+      );
     }
     if (value.trim().length < 3) {
-      return 'User name must be at least 3 characters';
+      return AppStrings.usernameMin;
     }
     if (!RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(value)) {
-      return 'This username is not valid';
+      return AppStrings.fieldInvalid.replaceFirst(
+        '{field}',
+        AppStrings.usernameLabel,
+      );
     }
     return null;
   }
@@ -22,15 +31,15 @@ class UsernameField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: const InputDecoration(
-        labelText: 'User name',
-        hintText: 'Enter your user name',
+        labelText: AppStrings.usernameLabel,
+        hintText: AppStrings.usernameHint,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         border: OutlineInputBorder(),
         errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red, width: 2),
+          borderSide: BorderSide(color: AppColors.errorBorderColor, width: 2),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red, width: 2),
+          borderSide: BorderSide(color: AppColors.errorBorderColor, width: 2),
         ),
       ),
       validator: _validator,

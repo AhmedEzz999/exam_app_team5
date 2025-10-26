@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'core/constants/app_strings.dart';
 import 'features/signup/presentation/views/signup_view.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Exam App',
+      title: AppStrings.appName,
       home: SignupView(),
     );
   }

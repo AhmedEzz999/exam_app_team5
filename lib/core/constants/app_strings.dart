@@ -1,0 +1,34 @@
+abstract class AppStrings {
+  static const String appName = 'Exam App';
+  //------------Sign Up Feature-----------------
+  static const String signupTitle = 'Sign Up';
+  // Sign Up field labels and hints
+  static const String fieldRequired = '{field} is required';
+  static const String fieldInvalid = 'This {field} is not valid';
+
+  static const String usernameLabel = 'User name';
+  static const String usernameHint = 'Enter your user name';
+  static const String usernameMin = 'User name must be at least 3 characters';
+
+  static const String firstNameLabel = 'First name';
+  static const String firstNameHint = 'Enter first name';
+  static const String lastNameLabel = 'Last name';
+  static const String lastNameHint = 'Enter last name';
+  static const String nameShort = '{field} is too short';
+
+  static const String emailLabel = 'Email';
+  static const String emailHint = 'Enter your email';
+
+  static const String passwordLabel = 'Password';
+  static const String passwordHint = 'Enter password';
+  static const String confirmPasswordLabel = 'Confirm password';
+  static const String confirmPasswordHint = 'Confirm password';
+  static const String passwordMin = 'Password min 8 chars';
+  static const String passwordMismatch = 'Passwords do not match';
+
+  static const String phoneLabel = 'Phone number';
+  static const String phoneHint = 'Enter phone number';
+  static const String alreadyHaveAccount = 'Already have an account? ';
+  static const String signupButton = 'Signup';
+  static const String loginButton = 'Login';
+}
