@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/utils/app_validators.dart';
+import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_password_field.dart';
 import '../../../../core/widgets/custom_text_field.dart';
-import 'signup_button.dart';
 
 class SignupSection extends StatefulWidget {
   const SignupSection({super.key});
@@ -25,13 +25,14 @@ class _SignupSectionState extends State<SignupSection> with AppValidators {
   late TextEditingController _confirmPasswordController;
   late TextEditingController _phoneNumberController;
 
-  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
+  bool _isButtonEnabled = true;
+  bool _hasPressedButton = false;
 
   @override
   Widget build(BuildContext context) {
     return Form(
+      onChanged: _hasPressedButton ? _validateSignUpForm : null,
       key: _signupFormKey,
-      autovalidateMode: _autovalidateMode,
       child: Column(
         children: [
           CustomTextfield(
@@ -39,7 +40,6 @@ class _SignupSectionState extends State<SignupSection> with AppValidators {
             label: AppStrings.usernameLabel,
             controller: _usernameController,
             validator: validateUserName,
-            autovalidateMode: _autovalidateMode,
           ),
           16.verticalSpace,
           Row(
@@ -51,7 +51,6 @@ class _SignupSectionState extends State<SignupSection> with AppValidators {
                   label: AppStrings.firstNameLabel,
                   controller: _firstNameController,
                   validator: validateFirstName,
-                  autovalidateMode: _autovalidateMode,
                 ),
               ),
               10.horizontalSpace,
@@ -61,7 +60,6 @@ class _SignupSectionState extends State<SignupSection> with AppValidators {
                   label: AppStrings.lastNameLabel,
                   controller: _lastNameController,
                   validator: validateLastName,
-                  autovalidateMode: _autovalidateMode,
                 ),
               ),
             ],
@@ -72,7 +70,7 @@ class _SignupSectionState extends State<SignupSection> with AppValidators {
             label: AppStrings.emailLabel,
             controller: _emailController,
             validator: validateEmail,
-            autovalidateMode: _autovalidateMode,
+            keyboardType: TextInputType.emailAddress,
           ),
           16.verticalSpace,
           Row(
@@ -84,7 +82,6 @@ class _SignupSectionState extends State<SignupSection> with AppValidators {
                   label: AppStrings.passwordLabel,
                   controller: _passwordController,
                   isConfirm: false,
-                  autovalidateMode: _autovalidateMode,
                 ),
               ),
               10.horizontalSpace,
@@ -95,7 +92,6 @@ class _SignupSectionState extends State<SignupSection> with AppValidators {
                   controller: _confirmPasswordController,
                   isConfirm: true,
                   compareWith: _passwordController,
-                  autovalidateMode: _autovalidateMode,
                 ),
               ),
             ],
@@ -106,17 +102,13 @@ class _SignupSectionState extends State<SignupSection> with AppValidators {
             label: AppStrings.phoneNumberLabel,
             controller: _phoneNumberController,
             validator: validatePhoneNumber,
-            autovalidateMode: _autovalidateMode,
+            keyboardType: TextInputType.phone,
             textInputAction: TextInputAction.done,
           ),
           42.verticalSpace,
-          SignupButton(
-            signupFormKey: _signupFormKey,
-            onAutovalidateModeChanged: (mode) {
-              setState(() {
-                _autovalidateMode = mode;
-              });
-            },
+          CustomElevatedButton(
+            buttonText: AppStrings.signupButton,
+            onPressed: _isButtonEnabled ? _submitSignUp : null,
           ),
         ],
       ),
@@ -145,5 +137,34 @@ class _SignupSectionState extends State<SignupSection> with AppValidators {
     _confirmPasswordController.dispose();
     _phoneNumberController.dispose();
     super.dispose();
+  }
+
+  void _validateSignUpForm() {
+    final bool isFormValid = _signupFormKey.currentState?.validate() ?? false;
+
+    if (isFormValid != _isButtonEnabled) {
+      setState(() {
+        _isButtonEnabled = isFormValid;
+      });
+    }
+  }
+
+  void _submitSignUp() {
+    final bool isFormValid = _signupFormKey.currentState?.validate() ?? false;
+
+    setState(() {
+      _hasPressedButton = true;
+    });
+
+    if (isFormValid) {
+      // context.read<LoginCubit>().login(
+      //   email: _emailController.text,
+      //   password: _passwordController.text,
+      // );
+    } else {
+      setState(() {
+        _isButtonEnabled = false;
+      });
+    }
   }
 }

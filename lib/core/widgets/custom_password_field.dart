@@ -8,7 +8,6 @@ class CustomPasswordField extends StatelessWidget {
     required this.hint,
     required this.label,
     required this.controller,
-    required this.autovalidateMode,
     required this.isConfirm,
     this.compareWith,
     this.textInputAction,
@@ -19,7 +18,6 @@ class CustomPasswordField extends StatelessWidget {
   final String label;
   final TextInputAction? textInputAction;
   final TextEditingController controller;
-  final AutovalidateMode autovalidateMode;
   final bool isConfirm;
   final TextEditingController? compareWith;
 
@@ -44,7 +42,6 @@ class CustomPasswordField extends StatelessWidget {
       },
       autocorrect: false,
       textInputAction: textInputAction ?? TextInputAction.next,
-      autovalidateMode: autovalidateMode,
       decoration: InputDecoration(hintText: hint, labelText: label),
     );
   }

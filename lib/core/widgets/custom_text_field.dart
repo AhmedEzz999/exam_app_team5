@@ -7,17 +7,17 @@ class CustomTextfield extends StatelessWidget {
     required this.hint,
     required this.label,
     required this.controller,
-    required this.autovalidateMode,
-    this.validator,
+    required this.validator,
+    this.keyboardType,
     this.textInputAction,
     super.key,
   });
   final String hint;
   final String label;
-  final TextInputAction? textInputAction;
   final TextEditingController controller;
   final String? Function(String?)? validator;
-  final AutovalidateMode autovalidateMode;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,9 @@ class CustomTextfield extends StatelessWidget {
       cursorColor: AppColors.kBlackColor,
       controller: controller,
       validator: validator,
+      keyboardType: keyboardType ?? TextInputType.text,
       autocorrect: false,
       textInputAction: textInputAction ?? TextInputAction.next,
-      autovalidateMode: autovalidateMode,
       decoration: InputDecoration(hintText: hint, labelText: label),
     );
   }
