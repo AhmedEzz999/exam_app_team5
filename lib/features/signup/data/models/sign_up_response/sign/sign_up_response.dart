@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../domain/entities/user_entity.dart';
+import '../../../../domain/entities/sign_up_entity.dart';
 import 'user.dart';
 
 part 'sign_up_response.g.dart';
@@ -17,7 +17,7 @@ class SignUpResponse {
 
   Map<String, dynamic> toJson() => _$SignUpResponseToJson(this);
 
-  UserEntity toEntity() {
-    return UserEntity(token: token ?? '', userId: user?.id ?? '');
+  SignUpEntity toEntity() {
+    return SignUpEntity(token: token ?? '', userId: user?.id ?? '');
   }
 }

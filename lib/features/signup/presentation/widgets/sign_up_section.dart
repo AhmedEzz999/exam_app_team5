@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/app_validators.dart';
+import '../../domain/entities/user_entity.dart';
+import '../view_models/signup_cubit/sign_up_cubit.dart';
 import 'sign_up_button.dart';
 import 'sign_up_fields.dart';
 
@@ -26,35 +29,6 @@ class _SignUpSectionState extends State<SignUpSection> with AppValidators {
   bool _isButtonEnabled = true;
   bool _hasPressedButton = false;
 
-  void _validateSignUpForm() {
-    final bool isFormValid = _signupFormKey.currentState?.validate() ?? false;
-
-    if (isFormValid != _isButtonEnabled) {
-      setState(() {
-        _isButtonEnabled = isFormValid;
-      });
-    }
-  }
-
-  void _submitSignUp() {
-    final bool isFormValid = _signupFormKey.currentState?.validate() ?? false;
-
-    setState(() {
-      _hasPressedButton = true;
-    });
-
-    if (isFormValid) {
-      // context.read<SignUpCubit>().login(
-      // email: _emailController.text,
-      // password: _passwordController.text,
-      // );
-    } else {
-      setState(() {
-        _isButtonEnabled = false;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -77,6 +51,42 @@ class _SignUpSectionState extends State<SignUpSection> with AppValidators {
         ],
       ),
     );
+  }
+
+  void _validateSignUpForm() {
+    final bool isFormValid = _signupFormKey.currentState?.validate() ?? false;
+
+    if (isFormValid != _isButtonEnabled) {
+      setState(() {
+        _isButtonEnabled = isFormValid;
+      });
+    }
+  }
+
+  void _submitSignUp() {
+    final bool isFormValid = _signupFormKey.currentState?.validate() ?? false;
+
+    setState(() {
+      _hasPressedButton = true;
+    });
+
+    if (isFormValid) {
+      context.read<SignUpCubit>().signUp(
+        user: UserEntity.fromMap({
+          'username': _usernameController.text,
+          'firstName': _firstNameController.text,
+          'lastName': _lastNameController.text,
+          'email': _emailController.text,
+          'password': _passwordController.text,
+          'rePassword': _confirmPasswordController.text,
+          'phoneNumber': _phoneNumberController.text,
+        }),
+      );
+    } else {
+      setState(() {
+        _isButtonEnabled = false;
+      });
+    }
   }
 
   @override
