@@ -38,4 +38,8 @@ abstract class AppStrings {
   static const String signinTitle = 'Sign In';
   // Sign Up field labels and hints
   static const String dontHaveAccount = 'Don\'t have an account? ';
+
+  //------------Navigation----------------------
+  // error builder
+  static const String errorNavigate = '"Error When Navigate to route"';
 }
