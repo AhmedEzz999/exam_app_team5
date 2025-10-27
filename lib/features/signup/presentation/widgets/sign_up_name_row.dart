@@ -5,8 +5,8 @@ import '../../../../core/constants/app_strings.dart';
 import '../../../../core/utils/app_validators.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 
-class SignupNameRow extends StatelessWidget {
-  const SignupNameRow({
+class SignUpNameRow extends StatelessWidget {
+  const SignUpNameRow({
     required this.firstNameController,
     required this.lastNameController,
     required this.validators,

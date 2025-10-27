@@ -81,7 +81,7 @@ mixin AppValidators {
         AppStrings.phoneNumberLabel,
       );
     }
-    if (!RegExp(r'^\d{11}').hasMatch(value)) {
+    if (!RegExp(r'^01\d{9}$').hasMatch(value)) {
       return AppStrings.fieldInvalid.replaceFirst(
         '{field}',
         AppStrings.phoneNumberLabel.toLowerCase(),

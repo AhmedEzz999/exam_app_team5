@@ -4,11 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/utils/app_validators.dart';
 import '../../../../core/widgets/custom_text_field.dart';
-import 'signup_name_row.dart';
-import 'signup_password_row.dart';
+import 'sign_up_name_row.dart';
+import 'sign_up_password_row.dart';
 
-class SignupFields extends StatelessWidget {
-  const SignupFields({
+class SignUpFields extends StatelessWidget {
+  const SignUpFields({
     required this.usernameController,
     required this.firstNameController,
     required this.lastNameController,
@@ -40,7 +40,7 @@ class SignupFields extends StatelessWidget {
           validator: validators.validateUserName,
         ),
         16.verticalSpace,
-        SignupNameRow(
+        SignUpNameRow(
           firstNameController: firstNameController,
           lastNameController: lastNameController,
           validators: validators,
@@ -54,7 +54,7 @@ class SignupFields extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
         ),
         16.verticalSpace,
-        SignupPasswordRow(
+        SignUpPasswordRow(
           passwordController: passwordController,
           confirmPasswordController: confirmPasswordController,
         ),

@@ -1,7 +1,7 @@
 abstract class AppStrings {
   static const String appName = 'Exam App';
   //------------Sign Up Feature-----------------
-  static const String signupTitle = 'Sign Up';
+  static const String signUpTitle = 'Sign Up';
   // Sign Up field labels and hints
   static const String fieldRequired = '{field} is required';
   static const String fieldInvalid = 'This {field} is not valid';
@@ -30,6 +30,6 @@ abstract class AppStrings {
   static const String phoneNumberLabel = 'Phone number';
   static const String phoneNumberHint = 'Enter phone number';
   static const String alreadyHaveAccount = 'Already have an account? ';
-  static const String signupButton = 'Signup';
+  static const String signUpButton = 'Sign up';
   static const String loginButton = 'Login';
 }

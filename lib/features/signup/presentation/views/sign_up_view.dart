@@ -4,16 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/styles/app_colors.dart';
 import '../../../../core/styles/app_text_styles.dart';
-import '../widgets/signup_section.dart';
+import '../widgets/sign_up_section.dart';
 
-class SignupView extends StatefulWidget {
-  const SignupView({super.key});
+class SignUpView extends StatefulWidget {
+  const SignUpView({super.key});
 
   @override
-  State<SignupView> createState() => _SignupViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _SignupViewState extends State<SignupView> {
+class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class _SignupViewState extends State<SignupView> {
           iconSize: 24.w,
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text(AppStrings.signupTitle),
+        title: const Text(AppStrings.signUpTitle),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -33,7 +33,7 @@ class _SignupViewState extends State<SignupView> {
           child: Column(
             children: [
               6.verticalSpace,
-              const SignupSection(),
+              const SignUpSection(),
               6.verticalSpace,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

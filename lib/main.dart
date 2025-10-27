@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/constants/app_strings.dart';
 import 'core/theme/app_theme.dart';
-import 'features/signup/presentation/views/signup_view.dart';
+import 'features/signup/presentation/views/sign_up_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: AppStrings.appName,
         theme: AppThemes.light(),
-        home: const SignupView(),
+        home: const SignUpView(),
       ),
     );
   }

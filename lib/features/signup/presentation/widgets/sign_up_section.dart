@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/app_validators.dart';
-import 'signup_button.dart';
-import 'signup_fields.dart';
+import 'sign_up_button.dart';
+import 'sign_up_fields.dart';
 
-class SignupSection extends StatefulWidget {
-  const SignupSection({super.key});
+class SignUpSection extends StatefulWidget {
+  const SignUpSection({super.key});
 
   @override
-  State<SignupSection> createState() => _SignupSectionState();
+  State<SignUpSection> createState() => _SignUpSectionState();
 }
 
-class _SignupSectionState extends State<SignupSection> with AppValidators {
+class _SignUpSectionState extends State<SignUpSection> with AppValidators {
   final GlobalKey<FormState> _signupFormKey = GlobalKey();
 
   late final TextEditingController _usernameController;
@@ -62,7 +62,7 @@ class _SignupSectionState extends State<SignupSection> with AppValidators {
       onChanged: _hasPressedButton ? _validateSignUpForm : null,
       child: Column(
         children: [
-          SignupFields(
+          SignUpFields(
             usernameController: _usernameController,
             firstNameController: _firstNameController,
             lastNameController: _lastNameController,
@@ -73,7 +73,7 @@ class _SignupSectionState extends State<SignupSection> with AppValidators {
             validators: this,
           ),
           42.verticalSpace,
-          SignupButton(enabled: _isButtonEnabled, onPressed: _submitSignUp),
+          SignUpButton(enabled: _isButtonEnabled, onPressed: _submitSignUp),
         ],
       ),
     );

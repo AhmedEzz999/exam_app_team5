@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/widgets/custom_password_field.dart';
 
-class SignupPasswordRow extends StatelessWidget {
-  const SignupPasswordRow({
+class SignUpPasswordRow extends StatelessWidget {
+  const SignUpPasswordRow({
     required this.passwordController,
     required this.confirmPasswordController,
     super.key,
