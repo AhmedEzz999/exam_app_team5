@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../../../core/values/api_endpoints/api_endpoints.dart';
+import '../../../../core/constants/api_endpoints/api_endpoints.dart';
 import '../../data/models/login_response/login_response.dart';
 
 part 'login_api_client.g.dart';

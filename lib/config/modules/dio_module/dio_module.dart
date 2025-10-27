@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../../core/errors/error_handle_interseptor.dart';
-import '../../../core/values/api_endpoints/api_endpoints.dart';
+import '../../../core/constants/api_endpoints/api_endpoints.dart';
 
 @module
 abstract class DioModule {

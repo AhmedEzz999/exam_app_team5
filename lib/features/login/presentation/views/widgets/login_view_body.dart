@@ -1,3 +1,4 @@
+import 'package:exam_app/core/constants/app_strings/app_strings.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,15 +69,15 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
           children: [
             const SizedBox(height: 24),
             CustomTextfield(
-              hint: 'Enter you email',
-              label: 'Email',
+              hint: AppStrings.emailHint,
+              label: AppStrings.emailLabel,
               validator: validateEmail,
               controller: _emailController,
             ),
             24.verticalSpace,
             CustomTextfield.password(
-              hint: 'Enter you password ',
-              label: 'Password',
+              hint: AppStrings.passwordHint,
+              label: AppStrings.passwordLabel,
               validator: validatePassword,
               controller: _passwordController,
             ),
@@ -96,7 +97,7 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
                         ),
                       )
                     : CustomElevatedButton(
-                        buttonText: 'Login',
+                        buttonText: AppStrings.loginButton,
                         onPressed: _isButtonEnabled ? _submitLogin : null,
                       );
               },
@@ -107,11 +108,11 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: 'Don\'t have an account? ',
+                      text: AppStrings.dontHaveAccount,
                       style: AppTextStyles.kBlack16Regular(),
                     ),
                     TextSpan(
-                      text: 'sign up',
+                      text: AppStrings.signupButton,
                       style: AppTextStyles.kBlack12UnderLineRegular().copyWith(
                         color: AppColors.kPrimaryColor,
                         fontSize: 16,
