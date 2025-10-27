@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
+import '../../../../core/styles/app_colors.dart';
 
 class SignupButton extends StatefulWidget {
   const SignupButton({
@@ -18,13 +19,13 @@ class SignupButton extends StatefulWidget {
 
 class _SignupButtonState extends State<SignupButton> {
   final ValueNotifier<Color> _signupButtonColor = ValueNotifier(
-    AppColors.primaryColor,
+    AppColors.kPrimaryColor,
   );
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 52,
+      height: 48.h,
       width: double.infinity,
       child: ValueListenableBuilder<Color>(
         valueListenable: _signupButtonColor,
@@ -33,22 +34,22 @@ class _SignupButtonState extends State<SignupButton> {
             style: ElevatedButton.styleFrom(
               backgroundColor: color,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(28),
+                borderRadius: BorderRadius.circular(28.r),
               ),
             ),
             onPressed: () {
               final formState = widget.signupFormKey.currentState;
               if (formState != null && formState.validate()) {
-                _signupButtonColor.value = AppColors.primaryColor;
+                _signupButtonColor.value = AppColors.kPrimaryColor;
               } else {
                 widget.onAutovalidateModeChanged(AutovalidateMode.always);
-                _signupButtonColor.value = AppColors.disabledButtonColor;
+                _signupButtonColor.value = AppColors.kDisabledButtonColor;
               }
             },
-            child: const Text(
+            child: Text(
               AppStrings.signupButton,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),

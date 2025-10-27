@@ -61,7 +61,7 @@ class _SignupSectionState extends State<SignupSection> {
       child: Column(
         children: [
           UsernameField(controller: _usernameController),
-          SizedBox(height: 16.h),
+          16.verticalSpace,
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -71,7 +71,7 @@ class _SignupSectionState extends State<SignupSection> {
                   controller: _firstNameController,
                 ),
               ),
-              SizedBox(width: 10.w),
+              10.horizontalSpace,
               Expanded(
                 child: NameField(
                   label: AppStrings.lastNameLabel,
@@ -80,9 +80,9 @@ class _SignupSectionState extends State<SignupSection> {
               ),
             ],
           ),
-          SizedBox(height: 16.h),
+          16.verticalSpace,
           EmailField(controller: _emailController),
-          SizedBox(height: 16.h),
+          16.verticalSpace,
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -93,7 +93,7 @@ class _SignupSectionState extends State<SignupSection> {
                   isConfirm: false,
                 ),
               ),
-              SizedBox(width: 10.h),
+              10.horizontalSpace,
               Expanded(
                 child: PasswordField(
                   controller: _confirmPasswordController,
@@ -104,9 +104,9 @@ class _SignupSectionState extends State<SignupSection> {
               ),
             ],
           ),
-          SizedBox(height: 16.h),
+          16.verticalSpace,
           PhoneField(controller: _phoneController),
-          SizedBox(height: 38.h),
+          42.verticalSpace,
           SignupButton(
             signupFormKey: _signupFormKey,
             onAutovalidateModeChanged: (mode) {

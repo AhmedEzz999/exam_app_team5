@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/constants/app_strings.dart';
+import 'core/theme/app_theme.dart';
 import 'features/signup/presentation/views/signup_view.dart';
 
 void main() {
@@ -17,10 +18,11 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context, child) => const MaterialApp(
+      builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: AppStrings.appName,
-        home: SignupView(),
+        theme: AppThemes.light(),
+        home: const SignupView(),
       ),
     );
   }

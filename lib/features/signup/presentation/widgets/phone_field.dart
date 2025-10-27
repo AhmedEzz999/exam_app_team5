@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
+import '../../../../core/styles/app_colors.dart';
 
 class PhoneField extends StatelessWidget {
   const PhoneField({required this.controller, super.key});
@@ -31,28 +31,31 @@ class PhoneField extends StatelessWidget {
       keyboardType: TextInputType.phone,
       validator: _validator,
       textInputAction: TextInputAction.done,
-      style: TextStyle(fontSize: 16.sp, color: AppColors.primaryTextColor),
+      style: TextStyle(fontSize: 16.sp, color: AppColors.kBlackColor),
       decoration: InputDecoration(
-        hintStyle: TextStyle(fontSize: 14.sp, color: AppColors.hintTextColor),
-        contentPadding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 20.h),
+        hintStyle: TextStyle(
+          fontSize: 14.sp,
+          color: AppColors.kPlaceHolderColor,
+        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
         labelText: AppStrings.phoneLabel,
         hintText: AppStrings.phoneHint,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.borderColor, width: 1.5.w),
+          borderSide: BorderSide(color: AppColors.kBorderColor, width: 1.5.w),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.borderColor, width: 1.5.w),
+          borderSide: BorderSide(color: AppColors.kBorderColor, width: 1.5.w),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.errorBorderColor,
+            color: AppColors.kErrorBorderColor,
             width: 1.5.w,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.errorBorderColor,
+            color: AppColors.kErrorBorderColor,
             width: 1.5.w,
           ),
         ),
