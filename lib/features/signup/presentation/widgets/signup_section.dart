@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constants/app_strings.dart';
 import '../../../../core/utils/app_validators.dart';
-import '../../../../core/widgets/custom_button.dart';
-import '../../../../core/widgets/custom_password_field.dart';
-import '../../../../core/widgets/custom_text_field.dart';
+import 'signup_button.dart';
+import 'signup_fields.dart';
 
 class SignupSection extends StatefulWidget {
   const SignupSection({super.key});
@@ -17,99 +15,65 @@ class SignupSection extends StatefulWidget {
 class _SignupSectionState extends State<SignupSection> with AppValidators {
   final GlobalKey<FormState> _signupFormKey = GlobalKey();
 
-  late TextEditingController _usernameController;
-  late TextEditingController _firstNameController;
-  late TextEditingController _lastNameController;
-  late TextEditingController _emailController;
-  late TextEditingController _passwordController;
-  late TextEditingController _confirmPasswordController;
-  late TextEditingController _phoneNumberController;
+  late final TextEditingController _usernameController;
+  late final TextEditingController _firstNameController;
+  late final TextEditingController _lastNameController;
+  late final TextEditingController _emailController;
+  late final TextEditingController _passwordController;
+  late final TextEditingController _confirmPasswordController;
+  late final TextEditingController _phoneNumberController;
 
   bool _isButtonEnabled = true;
   bool _hasPressedButton = false;
 
+  void _validateSignUpForm() {
+    final bool isFormValid = _signupFormKey.currentState?.validate() ?? false;
+
+    if (isFormValid != _isButtonEnabled) {
+      setState(() {
+        _isButtonEnabled = isFormValid;
+      });
+    }
+  }
+
+  void _submitSignUp() {
+    final bool isFormValid = _signupFormKey.currentState?.validate() ?? false;
+
+    setState(() {
+      _hasPressedButton = true;
+    });
+
+    if (isFormValid) {
+      // context.read<SignUpCubit>().login(
+      // email: _emailController.text,
+      // password: _passwordController.text,
+      // );
+    } else {
+      setState(() {
+        _isButtonEnabled = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
-      onChanged: _hasPressedButton ? _validateSignUpForm : null,
       key: _signupFormKey,
+      onChanged: _hasPressedButton ? _validateSignUpForm : null,
       child: Column(
         children: [
-          CustomTextfield(
-            hint: AppStrings.usernameHint,
-            label: AppStrings.usernameLabel,
-            controller: _usernameController,
-            validator: validateUserName,
-          ),
-          16.verticalSpace,
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: CustomTextfield(
-                  hint: AppStrings.firstNameHint,
-                  label: AppStrings.firstNameLabel,
-                  controller: _firstNameController,
-                  validator: validateFirstName,
-                ),
-              ),
-              10.horizontalSpace,
-              Expanded(
-                child: CustomTextfield(
-                  hint: AppStrings.lastNameHint,
-                  label: AppStrings.lastNameLabel,
-                  controller: _lastNameController,
-                  validator: validateLastName,
-                ),
-              ),
-            ],
-          ),
-          16.verticalSpace,
-          CustomTextfield(
-            hint: AppStrings.emailHint,
-            label: AppStrings.emailLabel,
-            controller: _emailController,
-            validator: validateEmail,
-            keyboardType: TextInputType.emailAddress,
-          ),
-          16.verticalSpace,
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: CustomPasswordField(
-                  hint: AppStrings.passwordHint,
-                  label: AppStrings.passwordLabel,
-                  controller: _passwordController,
-                  isConfirm: false,
-                ),
-              ),
-              10.horizontalSpace,
-              Expanded(
-                child: CustomPasswordField(
-                  hint: AppStrings.confirmPasswordHint,
-                  label: AppStrings.confirmPasswordLabel,
-                  controller: _confirmPasswordController,
-                  isConfirm: true,
-                  compareWith: _passwordController,
-                ),
-              ),
-            ],
-          ),
-          16.verticalSpace,
-          CustomTextfield(
-            hint: AppStrings.phoneNumberHint,
-            label: AppStrings.phoneNumberLabel,
-            controller: _phoneNumberController,
-            validator: validatePhoneNumber,
-            keyboardType: TextInputType.phone,
-            textInputAction: TextInputAction.done,
+          SignupFields(
+            usernameController: _usernameController,
+            firstNameController: _firstNameController,
+            lastNameController: _lastNameController,
+            emailController: _emailController,
+            passwordController: _passwordController,
+            confirmPasswordController: _confirmPasswordController,
+            phoneNumberController: _phoneNumberController,
+            validators: this,
           ),
           42.verticalSpace,
-          CustomElevatedButton(
-            buttonText: AppStrings.signupButton,
-            onPressed: _isButtonEnabled ? _submitSignUp : null,
-          ),
+          SignupButton(enabled: _isButtonEnabled, onPressed: _submitSignUp),
         ],
       ),
     );
@@ -137,34 +101,5 @@ class _SignupSectionState extends State<SignupSection> with AppValidators {
     _confirmPasswordController.dispose();
     _phoneNumberController.dispose();
     super.dispose();
-  }
-
-  void _validateSignUpForm() {
-    final bool isFormValid = _signupFormKey.currentState?.validate() ?? false;
-
-    if (isFormValid != _isButtonEnabled) {
-      setState(() {
-        _isButtonEnabled = isFormValid;
-      });
-    }
-  }
-
-  void _submitSignUp() {
-    final bool isFormValid = _signupFormKey.currentState?.validate() ?? false;
-
-    setState(() {
-      _hasPressedButton = true;
-    });
-
-    if (isFormValid) {
-      // context.read<LoginCubit>().login(
-      //   email: _emailController.text,
-      //   password: _passwordController.text,
-      // );
-    } else {
-      setState(() {
-        _isButtonEnabled = false;
-      });
-    }
   }
 }
