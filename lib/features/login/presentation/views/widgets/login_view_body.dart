@@ -1,6 +1,8 @@
+import 'package:exam_app/core/constants/app_strings/app_strings.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/styles/app_colors.dart';
 import '../../../../../core/styles/app_text_styles.dart';
 import '../../../../../core/utils/validator.dart';
@@ -67,21 +69,21 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
           children: [
             const SizedBox(height: 24),
             CustomTextfield(
-              hint: 'Enter you email',
-              label: 'Email',
+              hint: AppStrings.emailHint,
+              label: AppStrings.emailLabel,
               validator: validateEmail,
               controller: _emailController,
             ),
-            const SizedBox(height: 24),
+            24.verticalSpace,
             CustomTextfield.password(
-              hint: 'Enter you password ',
-              label: 'Password',
+              hint: AppStrings.passwordHint,
+              label: AppStrings.passwordLabel,
               validator: validatePassword,
               controller: _passwordController,
             ),
-            const SizedBox(height: 12),
+            12.verticalSpace,
             const CustomRememberAndForget(),
-            const SizedBox(height: 32),
+            32.verticalSpace,
             BlocConsumer<LoginCubit, LoginState>(
               listener: (context, state) {
                 if (state is LoginSuccessState) {}
@@ -95,22 +97,22 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
                         ),
                       )
                     : CustomElevatedButton(
-                        buttonText: 'Login',
+                        buttonText: AppStrings.loginButton,
                         onPressed: _isButtonEnabled ? _submitLogin : null,
                       );
               },
             ),
-            const SizedBox(height: 16),
+            16.verticalSpace,
             Center(
               child: RichText(
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: 'Don\'t have an account? ',
+                      text: AppStrings.dontHaveAccount,
                       style: AppTextStyles.kBlack16Regular(),
                     ),
                     TextSpan(
-                      text: 'sign up',
+                      text: AppStrings.signupButton,
                       style: AppTextStyles.kBlack12UnderLineRegular().copyWith(
                         color: AppColors.kPrimaryColor,
                         fontSize: 16,
