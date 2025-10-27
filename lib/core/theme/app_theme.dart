@@ -7,7 +7,9 @@ import '../styles/app_text_styles.dart';
 class AppThemes {
   static light() => ThemeData(
     brightness: Brightness.light,
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.kWhiteColor,
+      titleTextStyle: AppTextStyles.kBlack20Medium(),
       centerTitle: false,
       elevation: 0,
       scrolledUnderElevation: 0,
@@ -21,10 +23,7 @@ class AppThemes {
 
     inputDecorationTheme: InputDecorationThemeData(
       hintStyle: TextStyle(fontSize: 14.sp, color: AppColors.kPlaceHolderColor),
-      labelStyle: TextStyle(
-        fontSize: 14.sp,
-        color: AppColors.kPlaceHolderColor,
-      ),
+      labelStyle: TextStyle(fontSize: 14.sp, color: AppColors.kLabelColor),
 
       contentPadding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
       floatingLabelBehavior: FloatingLabelBehavior.always,

@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_strings.dart';
-import 'email_field.dart';
-import 'name_field.dart';
-import 'password_field.dart';
-import 'phone_field.dart';
+import '../../../../core/utils/app_validators.dart';
+import '../../../../core/widgets/custom_password_field.dart';
+import '../../../../core/widgets/custom_text_field.dart';
 import 'signup_button.dart';
-import 'username_field.dart';
 
 class SignupSection extends StatefulWidget {
   const SignupSection({super.key});
@@ -16,7 +14,7 @@ class SignupSection extends StatefulWidget {
   State<SignupSection> createState() => _SignupSectionState();
 }
 
-class _SignupSectionState extends State<SignupSection> {
+class _SignupSectionState extends State<SignupSection> with AppValidators {
   final GlobalKey<FormState> _signupFormKey = GlobalKey();
 
   late TextEditingController _usernameController;
@@ -25,33 +23,9 @@ class _SignupSectionState extends State<SignupSection> {
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
   late TextEditingController _confirmPasswordController;
-  late TextEditingController _phoneController;
+  late TextEditingController _phoneNumberController;
 
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
-
-  @override
-  void initState() {
-    super.initState();
-    _usernameController = TextEditingController();
-    _firstNameController = TextEditingController();
-    _lastNameController = TextEditingController();
-    _emailController = TextEditingController();
-    _passwordController = TextEditingController();
-    _confirmPasswordController = TextEditingController();
-    _phoneController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    _firstNameController.dispose();
-    _lastNameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    _phoneController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,52 +34,81 @@ class _SignupSectionState extends State<SignupSection> {
       autovalidateMode: _autovalidateMode,
       child: Column(
         children: [
-          UsernameField(controller: _usernameController),
+          CustomTextfield(
+            hint: AppStrings.usernameHint,
+            label: AppStrings.usernameLabel,
+            controller: _usernameController,
+            validator: validateUserName,
+            autovalidateMode: _autovalidateMode,
+          ),
           16.verticalSpace,
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: NameField(
+                child: CustomTextfield(
+                  hint: AppStrings.firstNameHint,
                   label: AppStrings.firstNameLabel,
                   controller: _firstNameController,
+                  validator: validateFirstName,
+                  autovalidateMode: _autovalidateMode,
                 ),
               ),
               10.horizontalSpace,
               Expanded(
-                child: NameField(
+                child: CustomTextfield(
+                  hint: AppStrings.lastNameHint,
                   label: AppStrings.lastNameLabel,
                   controller: _lastNameController,
+                  validator: validateLastName,
+                  autovalidateMode: _autovalidateMode,
                 ),
               ),
             ],
           ),
           16.verticalSpace,
-          EmailField(controller: _emailController),
+          CustomTextfield(
+            hint: AppStrings.emailHint,
+            label: AppStrings.emailLabel,
+            controller: _emailController,
+            validator: validateEmail,
+            autovalidateMode: _autovalidateMode,
+          ),
           16.verticalSpace,
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: PasswordField(
-                  controller: _passwordController,
+                child: CustomPasswordField(
+                  hint: AppStrings.passwordHint,
                   label: AppStrings.passwordLabel,
+                  controller: _passwordController,
                   isConfirm: false,
+                  autovalidateMode: _autovalidateMode,
                 ),
               ),
               10.horizontalSpace,
               Expanded(
-                child: PasswordField(
-                  controller: _confirmPasswordController,
+                child: CustomPasswordField(
+                  hint: AppStrings.confirmPasswordHint,
                   label: AppStrings.confirmPasswordLabel,
+                  controller: _confirmPasswordController,
                   isConfirm: true,
                   compareWith: _passwordController,
+                  autovalidateMode: _autovalidateMode,
                 ),
               ),
             ],
           ),
           16.verticalSpace,
-          PhoneField(controller: _phoneController),
+          CustomTextfield(
+            hint: AppStrings.phoneNumberHint,
+            label: AppStrings.phoneNumberLabel,
+            controller: _phoneNumberController,
+            validator: validatePhoneNumber,
+            autovalidateMode: _autovalidateMode,
+            textInputAction: TextInputAction.done,
+          ),
           42.verticalSpace,
           SignupButton(
             signupFormKey: _signupFormKey,
@@ -118,5 +121,29 @@ class _SignupSectionState extends State<SignupSection> {
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _usernameController = TextEditingController();
+    _firstNameController = TextEditingController();
+    _lastNameController = TextEditingController();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+    _confirmPasswordController = TextEditingController();
+    _phoneNumberController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    _phoneNumberController.dispose();
+    super.dispose();
   }
 }

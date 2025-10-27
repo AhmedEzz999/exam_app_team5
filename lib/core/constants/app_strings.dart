@@ -14,7 +14,8 @@ abstract class AppStrings {
   static const String firstNameHint = 'Enter first name';
   static const String lastNameLabel = 'Last name';
   static const String lastNameHint = 'Enter last name';
-  static const String nameShort = '{field} is too short';
+  static const String firstNameShort = 'First name is too short';
+  static const String lastNameShort = 'Last name is too short';
 
   static const String emailLabel = 'Email';
   static const String emailHint = 'Enter your email';
@@ -26,8 +27,8 @@ abstract class AppStrings {
   static const String passwordMin = 'Password min 8 chars';
   static const String passwordMismatch = 'Passwords do not match';
 
-  static const String phoneLabel = 'Phone number';
-  static const String phoneHint = 'Enter phone number';
+  static const String phoneNumberLabel = 'Phone number';
+  static const String phoneNumberHint = 'Enter phone number';
   static const String alreadyHaveAccount = 'Already have an account? ';
   static const String signupButton = 'Signup';
   static const String loginButton = 'Login';
