@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constants/app_strings.dart';
-import '../../../../core/utils/app_validators.dart';
+import '../../../../core/constants/app_strings/app_strings.dart';
+import '../../../../core/utils/validators.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import 'sign_up_name_row.dart';
 import 'sign_up_password_row.dart';

@@ -1,4 +1,5 @@
 abstract class AppStrings {
+  AppStrings._();
   static const String appName = 'Exam App';
   //------------Sign Up Feature-----------------
   static const String signUpTitle = 'Sign Up';
@@ -32,4 +33,14 @@ abstract class AppStrings {
   static const String alreadyHaveAccount = 'Already have an account? ';
   static const String signUpButton = 'Sign up';
   static const String loginButton = 'Login';
+  static const String signUpSuccess = 'User created successfully.';
+
+  //------------Sign In Feature-----------------
+  static const String signinTitle = 'Sign In';
+  // Sign Up field labels and hints
+  static const String dontHaveAccount = 'Don\'t have an account? ';
+
+  //------------Navigation----------------------
+  // error builder
+  static const String errorNavigate = 'Error When Navigate to route';
 }

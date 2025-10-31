@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constants/app_strings.dart';
+import '../../../../core/constants/app_strings/app_strings.dart';
 import '../../../../core/widgets/custom_password_field.dart';
 
 class SignUpPasswordRow extends StatelessWidget {

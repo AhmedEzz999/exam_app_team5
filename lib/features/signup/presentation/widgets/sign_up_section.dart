@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/utils/app_validators.dart';
+import '../../../../core/constants/app_strings/app_strings.dart';
+import '../../../../core/utils/validators.dart';
+import '../../../../core/widgets/custom_snack_bar.dart';
 import '../../domain/entities/user_entity.dart';
-import '../view_models/signup_cubit/sign_up_cubit.dart';
+import '../view_models/sign_up_cubit.dart';
 import 'sign_up_button.dart';
 import 'sign_up_fields.dart';
 
@@ -34,21 +36,39 @@ class _SignUpSectionState extends State<SignUpSection> with AppValidators {
     return Form(
       key: _signupFormKey,
       onChanged: _hasPressedButton ? _validateSignUpForm : null,
-      child: Column(
-        children: [
-          SignUpFields(
-            usernameController: _usernameController,
-            firstNameController: _firstNameController,
-            lastNameController: _lastNameController,
-            emailController: _emailController,
-            passwordController: _passwordController,
-            confirmPasswordController: _confirmPasswordController,
-            phoneNumberController: _phoneNumberController,
-            validators: this,
-          ),
-          42.verticalSpace,
-          SignUpButton(enabled: _isButtonEnabled, onPressed: _submitSignUp),
-        ],
+      child: BlocConsumer<SignUpCubit, SignupState>(
+        listener: (context, state) {
+          if (state is SignUpSuccess) {
+            customSnackBar(context, AppStrings.signUpSuccess);
+          } else if (state is SignUpFailure) {
+            customSnackBar(context, state.errorMessage);
+          }
+        },
+        builder: (context, state) {
+          return Column(
+            children: [
+              AbsorbPointer(
+                absorbing: state is SignUpLoading,
+                child: SignUpFields(
+                  usernameController: _usernameController,
+                  firstNameController: _firstNameController,
+                  lastNameController: _lastNameController,
+                  emailController: _emailController,
+                  passwordController: _passwordController,
+                  confirmPasswordController: _confirmPasswordController,
+                  phoneNumberController: _phoneNumberController,
+                  validators: this,
+                ),
+              ),
+              42.verticalSpace,
+              SignUpButton(
+                enabled: _isButtonEnabled,
+                onPressed: _submitSignUp,
+                isLoading: state is SignUpLoading,
+              ),
+            ],
+          );
+        },
       ),
     );
   }

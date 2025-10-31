@@ -1,4 +1,4 @@
-import '../constants/app_strings.dart';
+import '../constants/app_strings/app_strings.dart';
 
 mixin AppValidators {
   String? validateUserName(String? value) {

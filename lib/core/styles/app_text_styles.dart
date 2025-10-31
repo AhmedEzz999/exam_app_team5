@@ -4,10 +4,17 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'app_colors.dart';
 
-abstract class AppTextStyles {
+class AppTextStyles {
+  AppTextStyles._();
   static TextStyle kBlack20Medium() => GoogleFonts.inter(
     fontSize: 20.sp,
     fontWeight: FontWeight.w500,
+    color: AppColors.kBlackColor,
+  );
+
+  static TextStyle kBlack18Regular() => GoogleFonts.inter(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w400,
     color: AppColors.kBlackColor,
   );
 

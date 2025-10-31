@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constants/app_strings.dart';
+import '../../../../core/constants/app_strings/app_strings.dart';
 import '../../../../core/styles/app_colors.dart';
 import '../../../../core/styles/app_text_styles.dart';
-import '../view_models/signup_cubit/sign_up_cubit.dart';
+import '../view_models/sign_up_cubit.dart';
 import '../widgets/sign_up_section.dart';
 
 class SignUpView extends StatefulWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-abstract class AppColors {
+class AppColors {
+  AppColors._();
   static const Color kPrimaryColor = Color(0xFF02369C);
-  static const Color kWhiteColor = Color(0xFFF9F9F9);
-  //------------Sign Up Feature-----------------
+  static const Color kBackgroundColor = Color(0xFFF9F9F9);
   static const Color kBlackColor = Color(0xFF000000);
   static const Color kLabelColor = Color(0xFF535353);
   static const Color kPlaceHolderColor = Color(0xFFA6A6A6);
