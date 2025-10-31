@@ -41,6 +41,6 @@ abstract class AppStrings {
   static const String dontHaveAccount = 'Don\'t have an account? ';
 
   //------------Navigation----------------------
-  // error builder
+  // Error Builder
   static const String errorNavigate = 'Error When Navigate to route';
 }

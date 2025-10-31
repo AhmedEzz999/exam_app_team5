@@ -38,7 +38,9 @@ dependencies:
   dartz: ^0.10.1
 
   # HTTP client for API requests
+  retrofit: ^4.6.0
   dio: ^5.9.0
+  pretty_dio_logger: ^1.4.0
 
   flutter:
     sdk: flutter
@@ -50,6 +52,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
 
   # Dependency injection
+  get_it: ^8.2.0
   injectable: ^2.5.2
 
   # Routing
@@ -58,7 +61,6 @@ dependencies:
   # Annotations for JSON serialization
   json_annotation: ^4.9.0
   logger: ^2.6.0
-  retrofit: ^4.6.0
 
 dev_dependencies:
   build_runner: ^2.6.0

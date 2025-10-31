@@ -3,5 +3,5 @@ class AppRoutes {
   static const singInRoute = '/login';
   static const singUpRoute = '/signup';
   static const forgetPasswordRoute = '/forgetPassword';
-  static const homeViewRoute = '/home';
+  static const homeRoute = '/home';
 }
