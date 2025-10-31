@@ -7,6 +7,7 @@ import '../../../../core/utils/validators.dart';
 import '../../../../core/widgets/custom_snack_bar.dart';
 import '../../domain/entities/user_entity.dart';
 import '../view_models/sign_up_cubit.dart';
+import '../view_models/sign_up_events.dart';
 import 'sign_up_button.dart';
 import 'sign_up_fields.dart';
 
@@ -91,16 +92,18 @@ class _SignUpSectionState extends State<SignUpSection> with AppValidators {
     });
 
     if (isFormValid) {
-      context.read<SignUpCubit>().signUp(
-        user: UserEntity.fromMap({
-          'username': _usernameController.text,
-          'firstName': _firstNameController.text,
-          'lastName': _lastNameController.text,
-          'email': _emailController.text,
-          'password': _passwordController.text,
-          'rePassword': _confirmPasswordController.text,
-          'phoneNumber': _phoneNumberController.text,
-        }),
+      context.read<SignUpCubit>().doIntent(
+        SignUp(
+          user: UserEntity.fromMap({
+            'username': _usernameController.text,
+            'firstName': _firstNameController.text,
+            'lastName': _lastNameController.text,
+            'email': _emailController.text,
+            'password': _passwordController.text,
+            'rePassword': _passwordController.text,
+            'phoneNumber': _phoneNumberController.text,
+          }),
+        ),
       );
     } else {
       setState(() {

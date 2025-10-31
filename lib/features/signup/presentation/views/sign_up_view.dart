@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../config/di/di.dart';
 import '../../../../core/constants/app_routes/app_routes.dart';
 import '../../../../core/constants/app_strings/app_strings.dart';
 import '../../../../core/styles/app_colors.dart';
@@ -30,7 +31,7 @@ class _SignUpViewState extends State<SignUpView> {
             children: [
               6.verticalSpace,
               BlocProvider(
-                create: (context) => SignUpCubit(),
+                create: (context) => getIt<SignUpCubit>(),
                 child: const SignUpSection(),
               ),
               6.verticalSpace,
