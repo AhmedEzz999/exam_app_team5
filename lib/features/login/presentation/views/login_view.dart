@@ -12,7 +12,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(AppStrings.signinTitle)),
+      appBar: AppBar(title: const Text(AppStrings.loginTitle)),
       body: BlocProvider<LoginCubit>(
         create: (context) => getIt<LoginCubit>(),
         child: const LoginViewBody(),

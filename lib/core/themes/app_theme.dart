@@ -17,8 +17,8 @@ class AppThemes {
     splashFactory: NoSplash.splashFactory,
     scaffoldBackgroundColor: AppColors.kBackgroundColor,
 
-    textTheme: const TextTheme(
-      bodyMedium: TextStyle(fontSize: 16, color: AppColors.kBlackColor),
+    textTheme: TextTheme(
+      bodyMedium: TextStyle(fontSize: 16.sp, color: AppColors.kBlackColor),
     ),
 
     inputDecorationTheme: InputDecorationThemeData(

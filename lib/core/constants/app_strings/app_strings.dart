@@ -22,7 +22,7 @@ abstract class AppStrings {
   static const String emailHint = 'Enter your email';
 
   static const String passwordLabel = 'Password';
-  static const String passwordHint = 'Enter password';
+  static const String passwordHint = 'Enter your password';
   static const String confirmPasswordLabel = 'Confirm password';
   static const String confirmPasswordHint = 'Confirm password';
   static const String passwordMin = 'Password min 8 chars';
@@ -32,12 +32,14 @@ abstract class AppStrings {
   static const String phoneNumberHint = 'Enter phone number';
   static const String alreadyHaveAccount = 'Already have an account? ';
   static const String signUpButton = 'Sign up';
-  static const String loginButton = 'Login';
   static const String signUpSuccess = 'User created successfully.';
 
   //------------Sign In Feature-----------------
-  static const String signinTitle = 'Sign In';
-  // Sign Up field labels and hints
+  static const String loginTitle = 'Login';
+  static const String loginButton = 'Log in';
+  // Sign In field labels and hints
+  static const String rememberMe = 'Remember me';
+  static const String forgetPassword = 'Forget password?';
   static const String dontHaveAccount = 'Don\'t have an account? ';
 
   //------------Navigation----------------------

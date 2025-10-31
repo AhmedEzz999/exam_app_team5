@@ -21,15 +21,7 @@ class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          style: IconButton.styleFrom(padding: EdgeInsets.only(left: 16.w)),
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          iconSize: 24.w,
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: const Text(AppStrings.signUpTitle),
-      ),
+      appBar: AppBar(title: const Text(AppStrings.signUpTitle)),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: SingleChildScrollView(
