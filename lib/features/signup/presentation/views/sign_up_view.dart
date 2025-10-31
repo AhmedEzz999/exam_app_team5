@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/constants/app_routes/app_routes.dart';
 import '../../../../core/constants/app_strings/app_strings.dart';
 import '../../../../core/styles/app_colors.dart';
 import '../../../../core/styles/app_text_styles.dart';
@@ -52,7 +54,9 @@ class _SignUpViewState extends State<SignUpView> {
                       padding: EdgeInsets.zero,
                       minimumSize: const Size(0, 0),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.go(AppRoutes.signInRoute);
+                    },
                     child: Text(
                       AppStrings.loginButton,
                       style: AppTextStyles.kBlack12UnderLineRegular().copyWith(
