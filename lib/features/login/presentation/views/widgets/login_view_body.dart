@@ -1,15 +1,16 @@
-import 'package:exam_app/core/constants/app_strings/app_strings.dart';
-import 'package:exam_app/features/login/presentation/view_models/cubit/login_events.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../core/constants/app_strings/app_strings.dart';
 import '../../../../../core/styles/app_colors.dart';
 import '../../../../../core/styles/app_text_styles.dart';
 import '../../../../../core/utils/validator.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../view_models/cubit/login_cubit.dart';
+import '../../view_models/cubit/login_events.dart';
 import 'remember_and_forget_widget.dart';
 
 class LoginViewBody extends StatefulWidget {
@@ -97,7 +98,7 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
                         ),
                       )
                     : CustomElevatedButton(
-                        buttonText: AppStrings.loginButton,
+                        widget: const Text(AppStrings.loginButton),
                         onPressed: _isButtonEnabled ? _submitLogin : null,
                       );
               },
@@ -112,7 +113,7 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
                       style: AppTextStyles.kBlack16Regular(),
                     ),
                     TextSpan(
-                      text: AppStrings.signupButton,
+                      text: AppStrings.signUpButton,
                       style: AppTextStyles.kBlack12UnderLineRegular().copyWith(
                         color: AppColors.kPrimaryColor,
                         fontSize: 16,

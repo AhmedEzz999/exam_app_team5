@@ -7,15 +7,14 @@ part 'login_response.g.dart';
 
 @JsonSerializable()
 class LoginResponse {
-  String? message;
-  String? token;
-  User? user;
-
   LoginResponse({this.message, this.token, this.user});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return _$LoginResponseFromJson(json);
   }
+  String? message;
+  String? token;
+  User? user;
 
   Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
 

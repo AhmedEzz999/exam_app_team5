@@ -1,8 +1,8 @@
-import 'package:exam_app/core/constants/app_strings/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../config/di/di.dart';
+import '../../../../core/constants/app_strings/app_strings.dart';
 import '../view_models/cubit/login_cubit.dart';
 import 'widgets/login_view_body.dart';
 

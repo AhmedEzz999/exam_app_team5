@@ -20,7 +20,7 @@ import '../../features/login/data/data_sources/remote/login_remote_data_source_c
     as _i328;
 import '../../features/login/data/repos/login_repo_impl.dart' as _i937;
 import '../../features/login/domain/repos/login_repo_contract.dart' as _i909;
-import '../../features/login/domain/usecases/login_usecase.dart' as _i420;
+import '../../features/login/domain/usecases/login_use_case.dart' as _i420;
 import '../../features/login/presentation/view_models/cubit/login_cubit.dart'
     as _i421;
 import '../modules/dio_module/dio_module.dart' as _i624;
@@ -47,11 +47,11 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i328.LoginRemoteDataSourceContract>(),
       ),
     );
-    gh.factory<_i420.LoginUsecase>(
-      () => _i420.LoginUsecase(loginRepo: gh<_i909.LoginRepoContract>()),
+    gh.factory<_i420.LoginUseCase>(
+      () => _i420.LoginUseCase(loginRepo: gh<_i909.LoginRepoContract>()),
     );
     gh.factory<_i421.LoginCubit>(
-      () => _i421.LoginCubit(gh<_i420.LoginUsecase>()),
+      () => _i421.LoginCubit(gh<_i420.LoginUseCase>()),
     );
     return this;
   }

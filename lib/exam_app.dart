@@ -1,6 +1,7 @@
-import 'package:exam_app/config/router/app_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'config/router/app_router/go_router.dart';
 import 'core/themes/themes.dart';
 
 class ExamApp extends StatelessWidget {

@@ -8,7 +8,7 @@ class Themes {
     brightness: Brightness.light,
     appBarTheme: AppBarTheme(
       centerTitle: false,
-      titleTextStyle: AppTextStyles.kBlack20Mediam(),
+      titleTextStyle: AppTextStyles.kBlack20Medium(),
     ),
     splashFactory: NoSplash.splashFactory,
     inputDecorationTheme: InputDecorationThemeData(

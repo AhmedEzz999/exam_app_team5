@@ -50,6 +50,6 @@ class AppTextStyles {
   static TextStyle kGrey12Regular() => GoogleFonts.roboto(
     fontSize: 12.sp,
     fontWeight: FontWeight.normal,
-    color: AppColors.kLabelColor,
+    color: AppColors.kGreyColor,
   );
 }
