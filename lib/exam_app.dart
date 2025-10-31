@@ -1,9 +1,7 @@
 import 'package:exam_app/config/router/app_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'core/themes/themes.dart';
-import 'features/login/presentation/views/login_view.dart';
 
 class ExamApp extends StatelessWidget {
   const ExamApp({super.key});
