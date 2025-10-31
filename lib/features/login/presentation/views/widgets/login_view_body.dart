@@ -1,4 +1,5 @@
 import 'package:exam_app/core/constants/app_strings/app_strings.dart';
+import 'package:exam_app/features/login/presentation/view_models/cubit/login_events.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,9 +51,8 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
   }
 
   void _submitLogin() {
-    context.read<LoginCubit>().login(
-      email: _emailController.text,
-      password: _passwordController.text,
+    context.read<LoginCubit>().doIntent(
+      Login(email: _emailController.text, password: _passwordController.text),
     );
   }
 
