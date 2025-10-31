@@ -15,6 +15,6 @@ final class LoginSuccessState extends LoginState {
 }
 
 final class LoginErrorState extends LoginState {
-  const LoginErrorState({required this.error});
-  final String error;
+  const LoginErrorState({required this.errorMessage});
+  final String errorMessage;
 }

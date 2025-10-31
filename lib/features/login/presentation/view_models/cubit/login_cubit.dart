@@ -20,11 +20,11 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-  _login({required String email, required String password}) async {
+  void _login({required String email, required String password}) async {
     emit(LoginLoadingState());
     final result = await _loginUseCase(email: email, password: password);
     result.fold(
-      (error) => emit(LoginErrorState(error: error.message)),
+      (error) => emit(LoginErrorState(errorMessage: error.message)),
       (success) => emit(LoginSuccessState(loginEntity: success)),
     );
   }
