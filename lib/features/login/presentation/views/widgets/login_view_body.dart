@@ -87,7 +87,11 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
             BlocConsumer<LoginCubit, LoginState>(
               listener: (context, state) {
                 if (state is LoginSuccessState) {}
-                if (state is LoginErrorState) {}
+                if (state is LoginErrorState) {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text(state.error)));
+                }
               },
               builder: (context, state) {
                 return state is LoginLoadingState
