@@ -51,14 +51,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i786.SignUpApiClient>(
       () => _i786.SignUpApiClient(gh<_i361.Dio>()),
     );
-    gh.factory<_i431.SignUpRemoteDataSourceContract>(
-      () => _i542.SignUpRemoteDatasourceImpl(
-        loginApiClient: gh<_i786.SignUpApiClient>(),
-      ),
-    );
     gh.factory<_i328.LoginRemoteDataSourceContract>(
       () => _i710.LoginRemoteDatasourceImpl(
         loginApiClient: gh<_i395.LoginApiClient>(),
+      ),
+    );
+    gh.factory<_i431.SignUpRemoteDataSourceContract>(
+      () => _i542.SignUpRemoteDatasourceImpl(
+        signUpApiClient: gh<_i786.SignUpApiClient>(),
       ),
     );
     gh.factory<_i553.SignUpRepoContract>(

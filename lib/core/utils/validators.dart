@@ -65,7 +65,12 @@ mixin AppValidators {
         AppStrings.emailLabel,
       );
     }
-    if (!RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}').hasMatch(value)) {
+    // Simple regex for email validation
+    final bool isValidEmail = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    ).hasMatch(value);
+
+    if (!isValidEmail) {
       return AppStrings.fieldInvalid.replaceFirst(
         '{field}',
         AppStrings.emailLabel.toLowerCase(),
@@ -81,12 +86,17 @@ mixin AppValidators {
         AppStrings.phoneNumberLabel,
       );
     }
-    if (!RegExp(r'^01\d{9}$').hasMatch(value)) {
+
+    // Egyptian mobile format: 010 / 011 / 012 / 015 + 8 digits
+    final phoneRegex = RegExp(r'^01[0125][0-9]{8}$');
+
+    if (!phoneRegex.hasMatch(value)) {
       return AppStrings.fieldInvalid.replaceFirst(
         '{field}',
         AppStrings.phoneNumberLabel.toLowerCase(),
       );
     }
+
     return null;
   }
 }

@@ -40,9 +40,9 @@ class _SignUpSectionState extends State<SignUpSection> with AppValidators {
       child: BlocConsumer<SignUpCubit, SignupState>(
         listener: (context, state) {
           if (state is SignUpSuccess) {
-            customSnackBar(context, AppStrings.signUpSuccess);
+            customSnackBar(context, message: AppStrings.signUpSuccess);
           } else if (state is SignUpFailure) {
-            customSnackBar(context, state.errorMessage);
+            customSnackBar(context, message: state.errorMessage);
           }
         },
         builder: (context, state) {
@@ -101,7 +101,7 @@ class _SignUpSectionState extends State<SignUpSection> with AppValidators {
             'email': _emailController.text,
             'password': _passwordController.text,
             'rePassword': _passwordController.text,
-            'phoneNumber': _phoneNumberController.text,
+            'phone': _phoneNumberController.text,
           }),
         ),
       );

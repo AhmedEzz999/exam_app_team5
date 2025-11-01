@@ -8,7 +8,7 @@ import '../../../../../core/constants/app_routes/app_routes.dart';
 import '../../../../../core/constants/app_strings/app_strings.dart';
 import '../../../../../core/styles/app_colors.dart';
 import '../../../../../core/styles/app_text_styles.dart';
-import '../../../../../core/utils/validator.dart';
+import '../../../../../core/utils/validators.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_password_field.dart';
 import '../../../../../core/widgets/custom_text_field.dart';

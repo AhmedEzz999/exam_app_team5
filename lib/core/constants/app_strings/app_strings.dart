@@ -1,6 +1,15 @@
 abstract class AppStrings {
   AppStrings._();
   static const String appName = 'Exam App';
+
+  //------------Sign In Feature-----------------
+  static const String loginTitle = 'Login';
+  static const String loginButton = 'Log in';
+  // Sign In field labels and hints
+  static const String rememberMe = 'Remember me';
+  static const String forgetPassword = 'Forget password?';
+  static const String dontHaveAccount = 'Don\'t have an account? ';
+
   //------------Sign Up Feature-----------------
   static const String signUpTitle = 'Sign Up';
   // Sign Up field labels and hints
@@ -34,13 +43,16 @@ abstract class AppStrings {
   static const String signUpButton = 'Sign up';
   static const String signUpSuccess = 'User created successfully.';
 
-  //------------Sign In Feature-----------------
-  static const String loginTitle = 'Login';
-  static const String loginButton = 'Log in';
-  // Sign In field labels and hints
-  static const String rememberMe = 'Remember me';
-  static const String forgetPassword = 'Forget password?';
-  static const String dontHaveAccount = 'Don\'t have an account? ';
+  //------------Password Requirements-----------------
+  static const String passwordRequirementsTitle = 'Password must contain:';
+  static const String passwordRequirementLength = '- At least 8 characters';
+  static const String passwordRequirementUppercase =
+      '- At least one uppercase letter';
+  static const String passwordRequirementLowercase =
+      '- At least one lowercase letter';
+  static const String passwordRequirementNumber = '- At least one number';
+  static const String passwordRequirementSpecialCharacter =
+      '- At least one special character (e.g., !@#\$&*)';
 
   //------------Navigation----------------------
   // Error Builder

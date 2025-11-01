@@ -3,4 +3,7 @@ class SignUpEntity {
 
   final String token;
   final String userId;
+
+  @override
+  String toString() => 'SignUpEntity(token: $token, userId: $userId)';
 }
