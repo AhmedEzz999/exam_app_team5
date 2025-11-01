@@ -7,39 +7,27 @@ class CustomTextfield extends StatelessWidget {
     required this.hint,
     required this.label,
     required this.controller,
-    this.autovalidateMode,
+    required this.validator,
+    this.keyboardType,
+    this.textInputAction,
     super.key,
-    this.isPassword = false,
-    this.validator,
-    this.onEditingComplete,
-  });
-  const CustomTextfield.password({
-    required this.hint,
-    required this.label,
-    required this.controller,
-    this.isPassword = true,
-    this.autovalidateMode,
-    super.key,
-    this.validator,
-    this.onEditingComplete,
   });
   final String hint;
   final String label;
   final TextEditingController controller;
   final String? Function(String?)? validator;
-  final AutovalidateMode? autovalidateMode;
-  final Function()? onEditingComplete;
-  final bool? isPassword;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: isPassword!,
       cursorColor: AppColors.kBlackColor,
       controller: controller,
       validator: validator,
+      keyboardType: keyboardType ?? TextInputType.text,
       autocorrect: false,
-      autovalidateMode: autovalidateMode,
+      textInputAction: textInputAction ?? TextInputAction.next,
       decoration: InputDecoration(hintText: hint, labelText: label),
     );
   }

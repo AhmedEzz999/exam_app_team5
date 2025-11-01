@@ -1,7 +1,7 @@
 class AppRoutes {
   AppRoutes._();
-  static const singInRoute = '/login';
-  static const singUpRoute = '/signup';
-  static const forgetPasswordRoute = "/forgetPassword";
-  static const homeRoute = "/home";
+  static const signInRoute = '/login';
+  static const signUpRoute = '/sign-up';
+  static const forgetPasswordRoute = '/forget-password';
+  static const homeRoute = '/home';
 }

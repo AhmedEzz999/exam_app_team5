@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/constants/app_strings/app_strings.dart';
 import '../../../../../core/styles/app_colors.dart';
 import '../../../../../core/styles/app_text_styles.dart';
 
@@ -25,20 +26,23 @@ class _CustomRememberAndForgetState extends State<CustomRememberAndForget> {
         activeColor: AppColors.kPrimaryColor,
         value: isSelected,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadiusGeometry.circular(2),
+          borderRadius: BorderRadiusGeometry.circular(2.r),
         ),
-        side: BorderSide(color: AppColors.kGreyColor, width: 2.sp),
-        onChanged: (v) {
+        side: BorderSide(color: AppColors.kGreyColor, width: 2.w),
+        onChanged: (value) {
           setState(() {
             isSelected = !isSelected;
           });
         },
       ),
-      title: Text('Remember me', style: AppTextStyles.kBlack13Regular()),
+      title: Text(
+        AppStrings.rememberMe,
+        style: AppTextStyles.kBlack13Regular(),
+      ),
       trailing: TextButton(
         onPressed: widget.onPressed,
         child: Text(
-          'Forget password?',
+          AppStrings.forgetPassword,
           style: AppTextStyles.kBlack12UnderLineRegular(),
         ),
       ),

@@ -1,15 +1,20 @@
-import 'package:exam_app/core/constants/app_strings/app_strings.dart';
-import 'package:exam_app/features/login/presentation/view_models/cubit/login_events.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../../core/constants/app_routes/app_routes.dart';
+import '../../../../../core/constants/app_strings/app_strings.dart';
 import '../../../../../core/styles/app_colors.dart';
 import '../../../../../core/styles/app_text_styles.dart';
-import '../../../../../core/utils/validator.dart';
+import '../../../../../core/utils/validators.dart';
 import '../../../../../core/widgets/custom_button.dart';
-import '../../../../../core/widgets/custom_text_form_field.dart';
+import '../../../../../core/widgets/custom_password_field.dart';
+import '../../../../../core/widgets/custom_snack_bar.dart';
+import '../../../../../core/widgets/custom_text_field.dart';
 import '../../view_models/cubit/login_cubit.dart';
+import '../../view_models/cubit/login_events.dart';
 import 'remember_and_forget_widget.dart';
 
 class LoginViewBody extends StatefulWidget {
@@ -40,7 +45,7 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
     super.dispose();
   }
 
-  void _validateForm() {
+  void _validateSignInForm() {
     final bool isValid = _globalKey.currentState?.validate() ?? false;
 
     if (isValid != _isButtonEnabled) {
@@ -59,71 +64,82 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Form(
-        onChanged: _validateForm,
-        autovalidateMode: AutovalidateMode.disabled,
-        key: _globalKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 24),
-            CustomTextfield(
-              hint: AppStrings.emailHint,
-              label: AppStrings.emailLabel,
-              validator: validateEmail,
-              controller: _emailController,
-            ),
-            24.verticalSpace,
-            CustomTextfield.password(
-              hint: AppStrings.passwordHint,
-              label: AppStrings.passwordLabel,
-              validator: validatePassword,
-              controller: _passwordController,
-            ),
-            12.verticalSpace,
-            const CustomRememberAndForget(),
-            32.verticalSpace,
-            BlocConsumer<LoginCubit, LoginState>(
-              listener: (context, state) {
-                if (state is LoginSuccessState) {}
-                if (state is LoginErrorState) {}
-              },
-              builder: (context, state) {
-                return state is LoginLoadingState
-                    ? const Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.kPrimaryColor,
-                        ),
-                      )
-                    : CustomElevatedButton(
-                        buttonText: AppStrings.loginButton,
-                        onPressed: _isButtonEnabled ? _submitLogin : null,
-                      );
-              },
-            ),
-            16.verticalSpace,
-            Center(
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: AppStrings.dontHaveAccount,
-                      style: AppTextStyles.kBlack16Regular(),
-                    ),
-                    TextSpan(
-                      text: AppStrings.signupButton,
-                      style: AppTextStyles.kBlack12UnderLineRegular().copyWith(
-                        color: AppColors.kPrimaryColor,
-                        fontSize: 16,
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Form(
+          onChanged: _validateSignInForm,
+          key: _globalKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              16.verticalSpace,
+              CustomTextfield(
+                hint: AppStrings.emailHint,
+                label: AppStrings.emailLabel,
+                controller: _emailController,
+                validator: validateEmail,
+              ),
+              24.verticalSpace,
+              CustomPasswordField(
+                hint: AppStrings.passwordHint,
+                label: AppStrings.passwordLabel,
+                controller: _passwordController,
+                isConfirm: false,
+              ),
+              6.verticalSpace,
+              const CustomRememberAndForget(),
+              32.verticalSpace,
+              BlocConsumer<LoginCubit, LoginState>(
+                listener: (context, state) {
+                  if (state is LoginSuccessState) {
+                    customSnackBar(context, message: AppStrings.signInSuccess);
+                    context.go(AppRoutes.homeRoute);
+                  }
+                  if (state is LoginErrorState) {
+                    customSnackBar(context, message: state.errorMessage);
+                  }
+                },
+                builder: (context, state) {
+                  return state is LoginLoadingState
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.kPrimaryColor,
+                          ),
+                        )
+                      : CustomElevatedButton(
+                          widget: const Text(AppStrings.loginButton),
+                          onPressed: _isButtonEnabled ? _submitLogin : null,
+                        );
+                },
+              ),
+              16.verticalSpace,
+              Center(
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: AppStrings.dontHaveAccount,
+                        style: AppTextStyles.kBlack16Regular(),
                       ),
-                      recognizer: TapGestureRecognizer()..onTap = () {},
-                    ),
-                  ],
+                      TextSpan(
+                        text: AppStrings.signUpButton,
+                        style: AppTextStyles.kBlack12UnderLineRegular()
+                            .copyWith(
+                              color: AppColors.kPrimaryColor,
+                              fontSize: 16.sp,
+                            ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            context.go(AppRoutes.signUpRoute);
+                          },
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
