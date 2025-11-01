@@ -50,6 +50,18 @@ dependencies:
 
   # Responsive design and screen adaptation
   flutter_screenutil: ^5.9.3
+
+  # Dependency injection
+  get_it: ^8.2.0
+  injectable: ^2.5.2
+
+  # Routing
+  go_router: ^16.3.0
+
+  # Annotations for JSON serialization
+  json_annotation: ^4.9.0
+  logger: ^2.6.0
+
   flutter_svg: ^2.2.1
 
 dev_dependencies:
