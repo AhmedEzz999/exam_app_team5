@@ -24,7 +24,7 @@ mixin AppValidators {
     if (value == null || value.trim().isEmpty) {
       return AppStrings.fieldRequired.replaceFirst(
         '{field}',
-        AppStrings.firstNameLabel.toLowerCase(),
+        AppStrings.firstNameLabel
       );
     }
     if (value.trim().length < 3) {
@@ -43,7 +43,7 @@ mixin AppValidators {
     if (value == null || value.trim().isEmpty) {
       return AppStrings.fieldRequired.replaceFirst(
         '{field}',
-        AppStrings.lastNameLabel.toLowerCase(),
+        AppStrings.lastNameLabel
       );
     }
     if (value.trim().length < 3) {
@@ -104,7 +104,7 @@ mixin AppValidators {
     if (value == null || value.isEmpty) {
       return AppStrings.fieldRequired.replaceFirst(
         '{field}',
-        AppStrings.passwordLabel.toLowerCase(),
+        AppStrings.passwordLabel,
       );
     }
     if (value.length < 8) {
@@ -128,7 +128,7 @@ mixin AppValidators {
     if (!passwordRegExp.hasMatch(value)) {
       return AppStrings.fieldRequired.replaceFirst(
         '{field}',
-        AppStrings.passwordLabel.toLowerCase(),
+        AppStrings.passwordLabel,
       );
     }
     return null;
@@ -138,7 +138,7 @@ mixin AppValidators {
     if (value == null || value.isEmpty) {
       return AppStrings.fieldRequired.replaceFirst(
         '{field}',
-        AppStrings.passwordLabel.toLowerCase(),
+        AppStrings.confirmPasswordLabel,
       );
     }
     if (value != password) {
