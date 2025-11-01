@@ -8,11 +8,8 @@ part of 'verify_reset_code_response.dart';
 
 VerifyResetCodeResponse _$VerifyResetCodeResponseFromJson(
   Map<String, dynamic> json,
-) => VerifyResetCodeResponse(
-  message: json['message'] as String?,
-  code: (json['code'] as num?)?.toInt(),
-);
+) => VerifyResetCodeResponse(status: json['status'] as String?);
 
 Map<String, dynamic> _$VerifyResetCodeResponseToJson(
   VerifyResetCodeResponse instance,
-) => <String, dynamic>{'message': instance.message, 'code': instance.code};
+) => <String, dynamic>{'status': instance.status};

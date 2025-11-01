@@ -22,6 +22,6 @@ abstract class ForgetPasswordApiClient {
   @POST(ApiEndpoints.verifyResetCodeEndPoint)
   Future<VerifyResetCodeResponse> verifyResetCode(@Body() body);
 
-  @POST(ApiEndpoints.resetPasswordEndPoint)
+  @PUT(ApiEndpoints.resetPasswordEndPoint)
   Future<ResetPasswordResponse> resetPassword(@Body() body);
 }

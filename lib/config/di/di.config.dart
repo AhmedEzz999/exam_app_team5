@@ -15,6 +15,18 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../../features/forget_password/api/api_client/forget_password_api_client.dart'
     as _i892;
+import '../../features/forget_password/data/data_sources/remote/remote_data_source_cont.dart'
+    as _i161;
+import '../../features/forget_password/data/repos/forget_password_repo_impl.dart'
+    as _i216;
+import '../../features/forget_password/domain/repos/forget_password_repo_contract.dart'
+    as _i377;
+import '../../features/forget_password/domain/ucecases/forget_password_usecase.dart'
+    as _i982;
+import '../../features/forget_password/domain/ucecases/reset_password_usecase.dart'
+    as _i939;
+import '../../features/forget_password/domain/ucecases/verify_reset_otp_usecase.dart'
+    as _i492;
 import '../../features/login/api/api_client/login_api_client.dart' as _i395;
 import '../../features/login/api/data_sources/remote/login_remote_datasource_impl.dart'
     as _i710;
@@ -42,6 +54,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i395.LoginApiClient>(
       () => _i395.LoginApiClient(gh<_i361.Dio>()),
     );
+    gh.factory<_i377.ForgetPasswordRepoContract>(
+      () => _i216.ForgetPasswordRepoImpl(
+        remoteDataSource: gh<_i161.ForgetPasswordRemoteDataSourceContract>(),
+      ),
+    );
     gh.factory<_i328.LoginRemoteDataSourceContract>(
       () => _i710.LoginRemoteDatasourceImpl(
         loginApiClient: gh<_i395.LoginApiClient>(),
@@ -51,6 +68,15 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i937.LoginRepoImpl(
         remoteDataSource: gh<_i328.LoginRemoteDataSourceContract>(),
       ),
+    );
+    gh.factory<_i939.ResetPasswordUsecase>(
+      () => _i939.ResetPasswordUsecase(gh<_i377.ForgetPasswordRepoContract>()),
+    );
+    gh.factory<_i982.ForgetPasswordUsecase>(
+      () => _i982.ForgetPasswordUsecase(gh<_i377.ForgetPasswordRepoContract>()),
+    );
+    gh.factory<_i492.VerifyResetOtpUsecase>(
+      () => _i492.VerifyResetOtpUsecase(gh<_i377.ForgetPasswordRepoContract>()),
     );
     gh.factory<_i420.LoginUsecase>(
       () => _i420.LoginUsecase(loginRepo: gh<_i909.LoginRepoContract>()),

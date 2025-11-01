@@ -11,7 +11,7 @@ abstract class DioModule {
   Dio dio() {
     final dio = Dio(
       BaseOptions(
-        baseUrl: ApiEndpoints.kBaseUrl,
+        baseUrl: ApiEndpoints.baseUrl,
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
         responseType: ResponseType.json,

@@ -1,3 +1,4 @@
+import 'package:exam_app/features/forget_password/domain/entity/forget_password_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'forget_password_response.g.dart';
@@ -14,4 +15,7 @@ class ForgetPasswordResponse {
   }
 
   Map<String, dynamic> toJson() => _$ForgetPasswordResponseToJson(this);
+
+  ForgetPasswordEntity toEntity() =>
+      ForgetPasswordEntity(message: message ?? "", info: info ?? "");
 }

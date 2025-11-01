@@ -10,9 +10,9 @@ ResetPasswordResponse _$ResetPasswordResponseFromJson(
   Map<String, dynamic> json,
 ) => ResetPasswordResponse(
   message: json['message'] as String?,
-  code: (json['code'] as num?)?.toInt(),
+  token: json['token'] as String?,
 );
 
 Map<String, dynamic> _$ResetPasswordResponseToJson(
   ResetPasswordResponse instance,
-) => <String, dynamic>{'message': instance.message, 'code': instance.code};
+) => <String, dynamic>{'message': instance.message, 'token': instance.token};
