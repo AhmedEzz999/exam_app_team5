@@ -99,4 +99,51 @@ mixin AppValidators {
 
     return null;
   }
+
+  String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return AppStrings.fieldRequired.replaceFirst(
+        '{field}',
+        AppStrings.passwordLabel.toLowerCase(),
+      );
+    }
+    if (value.length < 8) {
+      return AppStrings.passwordMin;
+    }
+    return null;
+  }
+
+  String? validatePasswordForSignUp(String? value) {
+    if (value == null || value.isEmpty) {
+      return AppStrings.fieldRequired.replaceFirst(
+        '{field}',
+        AppStrings.passwordLabel.toLowerCase(),
+      );
+    }
+
+    final RegExp passwordRegExp = RegExp(
+      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$',
+    );
+
+    if (!passwordRegExp.hasMatch(value)) {
+      return AppStrings.fieldRequired.replaceFirst(
+        '{field}',
+        AppStrings.passwordLabel.toLowerCase(),
+      );
+    }
+    return null;
+  }
+
+  String? validateConfirmPassword(String? value, {required String password}) {
+    if (value == null || value.isEmpty) {
+      return AppStrings.fieldRequired.replaceFirst(
+        '{field}',
+        AppStrings.passwordLabel.toLowerCase(),
+      );
+    }
+    if (value != password) {
+      return AppStrings.passwordMismatch;
+    }
+    return null;
+  }
 }

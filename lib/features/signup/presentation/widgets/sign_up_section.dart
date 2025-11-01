@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_strings/app_strings.dart';
-import '../../../../core/utils/validators.dart';
 import '../../../../core/widgets/custom_snack_bar.dart';
 import '../../domain/entities/user_entity.dart';
 import '../view_models/sign_up_cubit.dart';
@@ -18,7 +17,7 @@ class SignUpSection extends StatefulWidget {
   State<SignUpSection> createState() => _SignUpSectionState();
 }
 
-class _SignUpSectionState extends State<SignUpSection> with AppValidators {
+class _SignUpSectionState extends State<SignUpSection> {
   final GlobalKey<FormState> _signupFormKey = GlobalKey();
 
   late final TextEditingController _usernameController;
@@ -58,7 +57,6 @@ class _SignUpSectionState extends State<SignUpSection> with AppValidators {
                   passwordController: _passwordController,
                   confirmPasswordController: _confirmPasswordController,
                   phoneNumberController: _phoneNumberController,
-                  validators: this,
                 ),
               ),
               42.verticalSpace,

@@ -5,6 +5,6 @@ class ExploreView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Explore View"));
+    return const Center(child: Text('Explore View'));
   }
 }

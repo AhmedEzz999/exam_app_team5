@@ -7,7 +7,7 @@ import '../../../../core/widgets/custom_text_field.dart';
 import 'sign_up_name_row.dart';
 import 'sign_up_password_row.dart';
 
-class SignUpFields extends StatelessWidget {
+class SignUpFields extends StatelessWidget with AppValidators {
   const SignUpFields({
     required this.usernameController,
     required this.firstNameController,
@@ -16,7 +16,6 @@ class SignUpFields extends StatelessWidget {
     required this.passwordController,
     required this.confirmPasswordController,
     required this.phoneNumberController,
-    required this.validators,
     super.key,
   });
 
@@ -27,7 +26,6 @@ class SignUpFields extends StatelessWidget {
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
   final TextEditingController phoneNumberController;
-  final AppValidators validators;
 
   @override
   Widget build(BuildContext context) {
@@ -37,20 +35,19 @@ class SignUpFields extends StatelessWidget {
           hint: AppStrings.usernameHint,
           label: AppStrings.usernameLabel,
           controller: usernameController,
-          validator: validators.validateUserName,
+          validator: validateUserName,
         ),
         16.verticalSpace,
         SignUpNameRow(
           firstNameController: firstNameController,
           lastNameController: lastNameController,
-          validators: validators,
         ),
         16.verticalSpace,
         CustomTextfield(
           hint: AppStrings.emailHint,
           label: AppStrings.emailLabel,
           controller: emailController,
-          validator: validators.validateEmail,
+          validator: validateEmail,
           keyboardType: TextInputType.emailAddress,
         ),
         16.verticalSpace,
@@ -63,7 +60,7 @@ class SignUpFields extends StatelessWidget {
           hint: AppStrings.phoneNumberHint,
           label: AppStrings.phoneNumberLabel,
           controller: phoneNumberController,
-          validator: validators.validatePhoneNumber,
+          validator: validatePhoneNumber,
           keyboardType: TextInputType.phone,
           textInputAction: TextInputAction.done,
         ),

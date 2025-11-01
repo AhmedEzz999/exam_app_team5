@@ -9,12 +9,11 @@ import '../../../../../core/constants/app_strings/app_strings.dart';
 import '../../../../../core/styles/app_colors.dart';
 import '../../../../../core/styles/app_text_styles.dart';
 import '../../../../../core/utils/validators.dart';
-import '../../../../../core/widgets/custom_button.dart';
-import '../../../../../core/widgets/custom_password_field.dart';
 import '../../../../../core/widgets/custom_snack_bar.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../view_models/cubit/login_cubit.dart';
 import '../../view_models/cubit/login_events.dart';
+import 'login_button.dart';
 import 'remember_and_forget_widget.dart';
 
 class LoginViewBody extends StatefulWidget {
@@ -28,7 +27,8 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
   late GlobalKey<FormState> _globalKey;
-  bool _isButtonEnabled = false;
+  bool _isButtonEnabled = true;
+  bool _hasPressedButton = false;
 
   @override
   void initState() {
@@ -46,19 +46,31 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
   }
 
   void _validateSignInForm() {
-    final bool isValid = _globalKey.currentState?.validate() ?? false;
+    final bool isFormValid = _globalKey.currentState?.validate() ?? false;
 
-    if (isValid != _isButtonEnabled) {
+    if (isFormValid != _isButtonEnabled) {
       setState(() {
-        _isButtonEnabled = isValid;
+        _isButtonEnabled = isFormValid;
       });
     }
   }
 
   void _submitLogin() {
-    context.read<LoginCubit>().doIntent(
-      Login(email: _emailController.text, password: _passwordController.text),
-    );
+    final bool isFormValid = _globalKey.currentState?.validate() ?? false;
+
+    setState(() {
+      _hasPressedButton = true;
+    });
+
+    if (isFormValid) {
+      context.read<LoginCubit>().doIntent(
+        Login(email: _emailController.text, password: _passwordController.text),
+      );
+    } else {
+      setState(() {
+        _isButtonEnabled = false;
+      });
+    }
   }
 
   @override
@@ -68,7 +80,7 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Form(
-          onChanged: _validateSignInForm,
+          onChanged: _hasPressedButton ? _validateSignInForm : null,
           key: _globalKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -81,11 +93,12 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
                 validator: validateEmail,
               ),
               24.verticalSpace,
-              CustomPasswordField(
+              CustomTextfield.password(
                 hint: AppStrings.passwordHint,
                 label: AppStrings.passwordLabel,
                 controller: _passwordController,
-                isConfirm: false,
+                validator: validatePassword,
+                textInputAction: TextInputAction.done,
               ),
               6.verticalSpace,
               const CustomRememberAndForget(),
@@ -101,16 +114,11 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
                   }
                 },
                 builder: (context, state) {
-                  return state is LoginLoadingState
-                      ? const Center(
-                          child: CircularProgressIndicator(
-                            color: AppColors.kPrimaryColor,
-                          ),
-                        )
-                      : CustomElevatedButton(
-                          widget: const Text(AppStrings.loginButton),
-                          onPressed: _isButtonEnabled ? _submitLogin : null,
-                        );
+                  return LoginButton(
+                    enabled: _isButtonEnabled,
+                    onPressed: _submitLogin,
+                    isLoading: state is LoginLoadingState,
+                  );
                 },
               ),
               16.verticalSpace,

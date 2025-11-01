@@ -5,17 +5,15 @@ import '../../../../core/constants/app_strings/app_strings.dart';
 import '../../../../core/utils/validators.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 
-class SignUpNameRow extends StatelessWidget {
+class SignUpNameRow extends StatelessWidget with AppValidators {
   const SignUpNameRow({
     required this.firstNameController,
     required this.lastNameController,
-    required this.validators,
     super.key,
   });
 
   final TextEditingController firstNameController;
   final TextEditingController lastNameController;
-  final AppValidators validators;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,7 @@ class SignUpNameRow extends StatelessWidget {
             hint: AppStrings.firstNameHint,
             label: AppStrings.firstNameLabel,
             controller: firstNameController,
-            validator: validators.validateFirstName,
+            validator: validateFirstName,
           ),
         ),
         10.horizontalSpace,
@@ -36,7 +34,7 @@ class SignUpNameRow extends StatelessWidget {
             hint: AppStrings.lastNameHint,
             label: AppStrings.lastNameLabel,
             controller: lastNameController,
-            validator: validators.validateLastName,
+            validator: validateLastName,
           ),
         ),
       ],
