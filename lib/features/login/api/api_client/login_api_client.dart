@@ -13,6 +13,6 @@ abstract class LoginApiClient {
   @factoryMethod
   factory LoginApiClient(Dio dio) = _LoginApiClient;
 
-  @POST(ApiEndpoints.kSignInEndPoint)
+  @POST(ApiEndpoints.signInEndPoint)
   Future<LoginResponse> login(@Body() body);
 }

@@ -13,6 +13,8 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../features/forget_password/api/api_client/forget_password_api_client.dart'
+    as _i892;
 import '../../features/login/api/api_client/login_api_client.dart' as _i395;
 import '../../features/login/api/data_sources/remote/login_remote_datasource_impl.dart'
     as _i710;
@@ -34,6 +36,9 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioModule = _$DioModule();
     gh.lazySingleton<_i361.Dio>(() => dioModule.dio());
+    gh.lazySingleton<_i892.ForgetPasswordApiClient>(
+      () => _i892.ForgetPasswordApiClient(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i395.LoginApiClient>(
       () => _i395.LoginApiClient(gh<_i361.Dio>()),
     );
