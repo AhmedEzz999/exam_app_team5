@@ -9,6 +9,7 @@ class Themes {
     brightness: Brightness.light,
     appBarTheme: AppBarTheme(
       centerTitle: false,
+      backgroundColor: AppColors.kWhiteColor,
       titleTextStyle: AppTextStyles.kBlack20Mediam(),
     ),
     splashFactory: NoSplash.splashFactory,
@@ -21,6 +22,10 @@ class Themes {
         borderRadius: BorderRadius.circular(4),
         borderSide: const BorderSide(color: AppColors.kGreyColor),
       ),
+      errorStyle: AppTextStyles.kGrey12Regular().copyWith(
+        color: AppColors.kRedErrorColor,
+      ),
+
       hintStyle: AppTextStyles.kPlaceHolder14Regular(),
       labelStyle: AppTextStyles.kGrey12Regular(),
     ),

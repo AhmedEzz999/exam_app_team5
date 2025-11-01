@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../styles/app_colors.dart';
+import '../styles/app_text_styles.dart';
 
 class CustomTextfield extends StatelessWidget {
   const CustomTextfield({
@@ -10,6 +11,7 @@ class CustomTextfield extends StatelessWidget {
     this.autovalidateMode,
     super.key,
     this.isPassword = false,
+    this.isValid = true,
     this.validator,
     this.onEditingComplete,
   });
@@ -22,6 +24,7 @@ class CustomTextfield extends StatelessWidget {
     super.key,
     this.validator,
     this.onEditingComplete,
+    this.isValid = true,
   });
   final String hint;
   final String label;
@@ -30,6 +33,7 @@ class CustomTextfield extends StatelessWidget {
   final AutovalidateMode? autovalidateMode;
   final Function()? onEditingComplete;
   final bool? isPassword;
+  final bool? isValid;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +44,15 @@ class CustomTextfield extends StatelessWidget {
       validator: validator,
       autocorrect: false,
       autovalidateMode: autovalidateMode,
-      decoration: InputDecoration(hintText: hint, labelText: label),
+      decoration: InputDecoration(
+        hintText: hint,
+        labelText: label,
+        labelStyle: isValid!
+            ? AppTextStyles.kGrey12Regular()
+            : AppTextStyles.kGrey12Regular().copyWith(
+                color: AppColors.kRedErrorColor,
+              ),
+      ),
     );
   }
 }

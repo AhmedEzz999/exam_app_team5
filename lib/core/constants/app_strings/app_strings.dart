@@ -46,4 +46,10 @@ abstract class AppStrings {
   static const String explore = 'Explore';
   static const String result = 'Result';
   static const String profile = 'Profile';
+  //------------Forget Password ------------------
+  static const String forgetPassword = "Forget password";
+  static const String password = "password";
+  static const String forgetPasswordDesc =
+      "Please enter your email associated to your account";
+  static const String continueLabel = "Continue";
 }
