@@ -1,4 +1,5 @@
 import 'package:exam_app/core/constants/app_routes/app_routes.dart';
+import 'package:exam_app/features/home_layout/presentation/views/home_layout_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -7,7 +8,7 @@ import '../../../features/login/presentation/views/login_view.dart';
 
 class AppRouter {
   static GoRouter goRouter = GoRouter(
-    initialLocation: AppRoutes.singInRoute,
+    initialLocation: AppRoutes.homeRoute,
 
     errorBuilder: (context, state) =>
         Scaffold(body: Center(child: Text(AppStrings.errorNavigate))),
@@ -16,6 +17,11 @@ class AppRouter {
         path: AppRoutes.singInRoute,
         name: AppRoutes.singInRoute,
         builder: (context, state) => LoginView(),
+      ),
+      GoRoute(
+        path: AppRoutes.homeRoute,
+        name: AppRoutes.homeRoute,
+        builder: (context, state) => HomeLayoutView(),
       ),
     ],
   );

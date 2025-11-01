@@ -5,6 +5,7 @@ import '../styles/app_text_styles.dart';
 
 class Themes {
   static light() => ThemeData(
+    scaffoldBackgroundColor: AppColors.kWhiteColor,
     brightness: Brightness.light,
     appBarTheme: AppBarTheme(
       centerTitle: false,

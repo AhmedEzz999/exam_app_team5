@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'app_colors.dart';
@@ -30,6 +31,11 @@ class AppTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.normal,
     color: AppColors.kPlaceHolderColor,
+  );
+  static TextStyle kBlue12SemiBold() => GoogleFonts.roboto(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.kPrimaryColor,
   );
   static TextStyle k16Medium() =>
       GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.w500);
