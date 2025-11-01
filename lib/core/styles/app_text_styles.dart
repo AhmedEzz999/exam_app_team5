@@ -27,6 +27,12 @@ class AppTextStyles {
     color: AppColors.kBlackColor,
   );
 
+  static TextStyle kBlue12SemiBold() => GoogleFonts.roboto(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.kPrimaryColor,
+  );
+
   static TextStyle kPlaceHolder14Regular() => GoogleFonts.roboto(
     fontSize: 14.sp,
     fontWeight: FontWeight.normal,

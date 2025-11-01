@@ -11,4 +11,6 @@ class AppColors {
   static const Color kBorderColor = Color(0xFF535353);
   static const Color kErrorBorderColor = Colors.red;
   static const Color kDisabledButtonColor = Color(0xFF878787);
+  static const Color kLightBlueColor = Color(0xffEDEFF3);
+  static const Color kBlueColor = Color(0xffCCD7EB);
 }

@@ -59,4 +59,8 @@ abstract class AppStrings {
   //------------Navigation----------------------
   // Error Builder
   static const String errorNavigate = 'Error When Navigate to route';
+  //------------Home Layout ----------------------
+  static const String explore = 'Explore';
+  static const String result = 'Result';
+  static const String profile = 'Profile';
 }
