@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:exam_app/features/forget_password/data/models/reset_password_response/reset_password_response.dart';
 import 'package:exam_app/features/forget_password/data/models/verify_reset_code_response/verify_reset_code_response.dart';
 import 'package:injectable/injectable.dart';
+import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
 import '../../../../core/constants/api_endpoints/api_endpoints.dart';
