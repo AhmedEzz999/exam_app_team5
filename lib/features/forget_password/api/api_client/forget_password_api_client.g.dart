@@ -29,7 +29,7 @@ class _ForgetPasswordApiClient implements ForgetPasswordApiClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'auth/forgotPassword',
+            '/auth/forgotPassword',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -56,7 +56,7 @@ class _ForgetPasswordApiClient implements ForgetPasswordApiClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'auth/verifyResetCode',
+            '/auth/verifyResetCode',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -80,10 +80,10 @@ class _ForgetPasswordApiClient implements ForgetPasswordApiClient {
     final _headers = <String, dynamic>{};
     final _data = body;
     final _options = _setStreamType<ResetPasswordResponse>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+      Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'auth/resetPassword',
+            '/auth/resetPassword',
             queryParameters: queryParameters,
             data: _data,
           )
