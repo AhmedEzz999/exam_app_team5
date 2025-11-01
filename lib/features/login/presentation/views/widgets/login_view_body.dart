@@ -11,6 +11,7 @@ import '../../../../../core/styles/app_text_styles.dart';
 import '../../../../../core/utils/validators.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_password_field.dart';
+import '../../../../../core/widgets/custom_snack_bar.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../view_models/cubit/login_cubit.dart';
 import '../../view_models/cubit/login_events.dart';
@@ -91,8 +92,13 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
               32.verticalSpace,
               BlocConsumer<LoginCubit, LoginState>(
                 listener: (context, state) {
-                  if (state is LoginSuccessState) {}
-                  if (state is LoginErrorState) {}
+                  if (state is LoginSuccessState) {
+                    customSnackBar(context, message: AppStrings.signInSuccess);
+                    context.go(AppRoutes.homeRoute);
+                  }
+                  if (state is LoginErrorState) {
+                    customSnackBar(context, message: state.errorMessage);
+                  }
                 },
                 builder: (context, state) {
                   return state is LoginLoadingState

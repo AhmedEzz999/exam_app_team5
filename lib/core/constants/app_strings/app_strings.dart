@@ -5,6 +5,8 @@ abstract class AppStrings {
   //------------Sign In Feature-----------------
   static const String loginTitle = 'Login';
   static const String loginButton = 'Log in';
+  static const String signInSuccess = 'Login successfully.';
+
   // Sign In field labels and hints
   static const String rememberMe = 'Remember me';
   static const String forgetPassword = 'Forget password?';
