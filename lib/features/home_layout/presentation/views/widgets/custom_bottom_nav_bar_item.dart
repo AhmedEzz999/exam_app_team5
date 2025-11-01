@@ -1,14 +1,14 @@
-import 'package:exam_app/core/styles/app_colors.dart';
-import 'package:exam_app/core/styles/app_text_styles.dart';
+import '../../../../../core/styles/app_colors.dart';
+import '../../../../../core/styles/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomBottomNavBarItem extends StatelessWidget {
   const CustomBottomNavBarItem({
-    super.key,
     required this.icon,
     required this.label,
     required this.isSelected,
+    super.key,
   });
   final Widget icon;
   final String label;

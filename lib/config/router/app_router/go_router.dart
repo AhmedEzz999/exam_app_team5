@@ -9,20 +9,23 @@ import '../../../features/signup/presentation/views/sign_up_view.dart';
 
 class AppRouter {
   static GoRouter goRouter = GoRouter(
-    initialLocation: AppRoutes.homeRoute,
+    initialLocation: AppRoutes.signInRoute,
     errorBuilder: (context, state) =>
         const Scaffold(body: Center(child: Text(AppStrings.errorNavigate))),
     routes: [
       GoRoute(
         path: AppRoutes.signInRoute,
+        name: AppRoutes.signInRoute,
         builder: (context, state) => const LoginView(),
       ),
       GoRoute(
         path: AppRoutes.signUpRoute,
+        name: AppRoutes.signUpRoute,
         builder: (context, state) => const SignUpView(),
       ),
       GoRoute(
         path: AppRoutes.homeRoute,
+        name: AppRoutes.homeRoute,
         builder: (context, state) => const HomeLayoutView(),
       ),
     ],

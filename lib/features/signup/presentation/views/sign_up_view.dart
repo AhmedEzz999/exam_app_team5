@@ -9,7 +9,6 @@ import '../../../../core/constants/app_strings/app_strings.dart';
 import '../../../../core/styles/app_colors.dart';
 import '../../../../core/styles/app_text_styles.dart';
 import '../view_models/sign_up_cubit.dart';
-import '../widgets/password_requirements.dart';
 import '../widgets/sign_up_section.dart';
 
 class SignUpView extends StatefulWidget {
@@ -62,7 +61,7 @@ class _SignUpViewState extends State<SignUpView> {
                   ),
                 ],
               ),
-              const PasswordRequirements(),
+              // const PasswordRequirements(),
             ],
           ),
         ),
