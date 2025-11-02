@@ -1,20 +1,21 @@
-import 'package:exam_app/core/constants/app_routes/app_routes.dart';
-import 'package:exam_app/core/constants/app_strings/app_strings.dart';
-import 'package:exam_app/core/utils/validator.dart';
-import 'package:exam_app/core/widgets/custom_button.dart';
-import 'package:exam_app/core/widgets/custom_loading_widget.dart';
-import 'package:exam_app/core/widgets/custom_text_form_field.dart';
-import 'package:exam_app/core/widgets/custom_toast_widget.dart';
-import 'package:exam_app/features/forget_password/presentation/view_models/reset_password/reset_password_cubit.dart';
-import 'package:exam_app/features/forget_password/presentation/view_models/reset_password/reset_password_event.dart';
-import 'package:exam_app/features/forget_password/presentation/views/widgets/custom_forget_password_info_sectio.dart';
+import '../../../../../core/constants/app_routes/app_routes.dart';
+import '../../../../../core/constants/app_strings/app_strings.dart';
+import '../../../../../core/widgets/custom_button.dart';
+import '../../../../../core/widgets/custom_loading_widget.dart';
+import '../../../../../core/widgets/custom_toast_widget.dart';
+import '../../view_models/reset_password/reset_password_cubit.dart';
+import '../../view_models/reset_password/reset_password_event.dart';
+import 'custom_forget_password_info_sectio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/utils/validators.dart';
+import '../../../../../core/widgets/custom_text_field.dart';
+
 class ResetPasswordViewBody extends StatefulWidget {
-  const ResetPasswordViewBody({super.key, required this.email});
+  const ResetPasswordViewBody({required this.email, super.key});
   final String email;
   @override
   State<ResetPasswordViewBody> createState() => _ResetPasswordViewBodyState();
@@ -71,7 +72,7 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            CustomForgetPasswordInfoSection(
+            const CustomForgetPasswordInfoSection(
               title: AppStrings.resetPassword,
               subTitle: AppStrings.resetPasswordDesc,
             ),
@@ -79,7 +80,7 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody>
               hint: AppStrings.passwordHint,
               label: AppStrings.passwordLabel,
               controller: _passwordController,
-              validator: validateSignUpPassword,
+              validator: validatePassword,
             ),
             24.verticalSpace,
             CustomTextfield.password(
@@ -88,7 +89,7 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody>
               controller: _confirmPasswordController,
               validator: (value) => validateConfirmPassword(
                 _passwordController.text,
-                _confirmPasswordController.text,
+                password: _confirmPasswordController.text,
               ),
             ),
             48.verticalSpace,
@@ -99,7 +100,7 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody>
                     context,
                     title: AppStrings.resetPasswordSuccessToast,
                   );
-                  context.goNamed(AppRoutes.singInRoute);
+                  context.goNamed(AppRoutes.signUpRoute);
                 }
                 if (state is ResetPasswordErrorState) {
                   errorToast(context, title: state.error);
@@ -107,9 +108,9 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody>
               },
               builder: (context, state) {
                 return state is ResetPasswordLoadingState
-                    ? CustomLoadingWidget()
+                    ? const CustomLoadingWidget()
                     : CustomElevatedButton(
-                        buttonText: AppStrings.continueLabel,
+                        widget: const Text(AppStrings.continueLabel),
                         onPressed: _isButtonEnabled
                             ? _submitResetPassword
                             : null,

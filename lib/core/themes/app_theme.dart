@@ -9,7 +9,7 @@ class AppThemes {
     brightness: Brightness.light,
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.kBackgroundColor,
-      titleTextStyle: AppTextStyles.kBlack20Medium(),
+      titleTextStyle: AppTextStyles.kBlack20Mediam(),
       centerTitle: false,
       elevation: 0,
       scrolledUnderElevation: 0,

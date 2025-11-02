@@ -64,25 +64,24 @@ abstract class AppStrings {
   static const String result = 'Result';
   static const String profile = 'Profile';
   //------------Forget Password ------------------
-  static const String forgetPassword = "Forget password";
-  static const String password = "password";
+  static const String password = 'password';
   static const String forgetPasswordDesc =
-      "Please enter your email associated to your account";
-  static const String continueLabel = "Continue";
-  static const String emailVerification = "Email Verification";
+      'Please enter your email associated to your account';
+  static const String continueLabel = 'Continue';
+  static const String emailVerification = 'Email Verification';
   static const String emailVerificationDesc =
-      " Please enter your code that send to your email address";
-  static const String invalidCode = "Invalid code";
+      ' Please enter your code that send to your email address';
+  static const String invalidCode = 'Invalid code';
   static const String didntReceiveCode = "Didn't receive code? ";
-  static const String resent = "Resend";
-  static const String resetPassword = "Reset password";
+  static const String resent = 'Resend';
+  static const String resetPassword = 'Reset password';
   static const String resetPasswordDesc =
-      "Password must not be empty and must contain 6 characters with upper case letter and one number at least ";
+      'Password must not be empty and must contain 6 characters with upper case letter and one number at least ';
 
   //------------------- Show Toasts -------------------
-  static const String loginSuccessToast = "Welcome, Back";
+  static const String loginSuccessToast = 'Welcome, Back';
   static const String otpSuccessToast =
-      "Code Rest Scussessfull, Please check your mail";
-  static const String resetPasswordSuccessToast = "Password Reset Successfully";
-  static const String resentCodeToast = "Otp Resend Successfully";
+      'Code Rest Scussessfull, Please check your mail';
+  static const String resetPasswordSuccessToast = 'Password Reset Successfully';
+  static const String resentCodeToast = 'Otp Resend Successfully';
 }
