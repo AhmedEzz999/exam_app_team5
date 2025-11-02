@@ -61,4 +61,11 @@ abstract class AppStrings {
   static const String resetPassword = "Reset password";
   static const String resetPasswordDesc =
       "Password must not be empty and must contain 6 characters with upper case letter and one number at least ";
+
+  //------------------- Show Toasts -------------------
+  static const String loginSuccessToast = "Welcome, Back";
+  static const String otpSuccessToast =
+      "Code Rest Scussessfull, Please check your mail";
+  static const String resetPasswordSuccessToast = "Password Reset Successfully";
+  static const String resentCodeToast = "Otp Resend Successfully";
 }

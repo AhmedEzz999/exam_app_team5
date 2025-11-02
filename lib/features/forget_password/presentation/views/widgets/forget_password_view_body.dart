@@ -2,7 +2,9 @@ import 'package:exam_app/core/constants/app_routes/app_routes.dart';
 import 'package:exam_app/core/constants/app_strings/app_strings.dart';
 import 'package:exam_app/core/utils/validator.dart';
 import 'package:exam_app/core/widgets/custom_button.dart';
+import 'package:exam_app/core/widgets/custom_loading_widget.dart';
 import 'package:exam_app/core/widgets/custom_text_form_field.dart';
+import 'package:exam_app/core/widgets/custom_toast_widget.dart';
 import 'package:exam_app/features/forget_password/presentation/view_models/forget_password/forget_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +21,7 @@ class ForgetPasswordViewBody extends StatefulWidget {
 }
 
 class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody>
-    with AppValidators {
+    with AppValidators, ShowToasts {
   late TextEditingController _emailController;
   late GlobalKey<FormState> _globalKey;
   bool _isButtonEnabled = false;
@@ -77,7 +79,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody>
             BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
               builder: (BuildContext context, state) {
                 if (state is ForgetPasswordLoadingState) {
-                  return Center(child: CircularProgressIndicator());
+                  return CustomLoadingWidget();
                 } else {
                   return CustomElevatedButton(
                     buttonText: AppStrings.continueLabel,
@@ -87,11 +89,10 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody>
               },
               listener: (BuildContext context, state) {
                 if (state is ForgetPasswordErrorState) {
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(SnackBar(content: Text(state.error)));
+                  errorToast(context, title: state.error);
                 }
                 if (state is ForgetPasswordSuccessState) {
+                  successToast(context, title: AppStrings.otpSuccessToast);
                   GoRouter.of(context).pushNamed(
                     AppRoutes.verifyResetCodeRoute,
                     extra: state.email,

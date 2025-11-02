@@ -3,6 +3,10 @@ import 'package:exam_app/features/forget_password/presentation/view_models/verif
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../config/di/di.dart';
+import '../forget_password/forget_password_cubit.dart';
+import '../forget_password/forget_password_events.dart';
+
 part 'verify_rest_code_state.dart';
 
 @injectable
@@ -15,7 +19,14 @@ class VerifyRestCodeCubit extends Cubit<VerifyRestCodeState> {
     switch (event) {
       case VerifyResetCode():
         _verifyCode(code: event.code);
+      case ResentCode():
+        _resentCode(email: event.email);
     }
+  }
+
+  _resentCode({required String email}) {
+    getIt<ForgetPasswordCubit>().doIntety(ForgetPassword(email));
+    emit(ResendCodeSuccessState());
   }
 
   _verifyCode({required String code}) async {

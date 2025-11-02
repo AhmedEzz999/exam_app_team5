@@ -15,3 +15,5 @@ final class VerifyRestCodeErrorState extends VerifyRestCodeState {
 }
 
 final class VerifyRestCodeSuccessState extends VerifyRestCodeState {}
+
+final class ResendCodeSuccessState extends VerifyRestCodeState {}

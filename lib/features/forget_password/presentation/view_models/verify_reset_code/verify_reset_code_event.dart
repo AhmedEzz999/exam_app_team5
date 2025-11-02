@@ -7,3 +7,9 @@ class VerifyResetCode extends VerifyResetCodeEvent {
 
   const VerifyResetCode({required this.code});
 }
+
+class ResentCode extends VerifyResetCodeEvent {
+  final String email;
+
+  ResentCode({required this.email});
+}

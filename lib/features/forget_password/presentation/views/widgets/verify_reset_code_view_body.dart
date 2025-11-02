@@ -2,6 +2,7 @@ import 'package:exam_app/core/constants/app_routes/app_routes.dart';
 import 'package:exam_app/core/constants/app_strings/app_strings.dart';
 import 'package:exam_app/core/styles/app_colors.dart';
 import 'package:exam_app/core/styles/app_text_styles.dart';
+import 'package:exam_app/core/widgets/custom_toast_widget.dart';
 import 'package:exam_app/features/forget_password/presentation/view_models/verify_reset_code/verify_reset_code_event.dart';
 import 'package:exam_app/features/forget_password/presentation/view_models/verify_reset_code/verify_rest_code_cubit.dart';
 import 'package:exam_app/features/forget_password/presentation/views/widgets/custom_forget_password_info_sectio.dart';
@@ -11,7 +12,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
-
 import '../../../../../core/widgets/custom_fixed_clickable_text_widget.dart';
 
 class VerifyResetCodeViewBody extends StatefulWidget {
@@ -23,7 +23,7 @@ class VerifyResetCodeViewBody extends StatefulWidget {
 }
 
 class _VerifyResetCodeViewBodyState extends State<VerifyResetCodeViewBody>
-    with PinThemes {
+    with PinThemes, ShowToasts {
   late TextEditingController _codeController;
   @override
   void initState() {
@@ -41,9 +41,10 @@ class _VerifyResetCodeViewBodyState extends State<VerifyResetCodeViewBody>
           ).pushNamed(AppRoutes.resetPasswordRoute, extra: widget.email);
         }
         if (state is VerifyRestCodeErrorState) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.error)));
+          errorToast(context, title: state.error);
+        }
+        if (state is ResendCodeSuccessState) {
+          successToast(context, title: AppStrings.resentCodeToast);
         }
       },
       child: Padding(
@@ -97,7 +98,11 @@ class _VerifyResetCodeViewBodyState extends State<VerifyResetCodeViewBody>
                   child: CustomFixedTextAndClickableText(
                     fixedText: AppStrings.didntReceiveCode,
                     clickableText: AppStrings.resent,
-                    onTap: () {},
+                    onTap: () {
+                      context.read<VerifyRestCodeCubit>().doIntent(
+                        ResentCode(email: widget.email),
+                      );
+                    },
                   ),
                 ),
               ],
