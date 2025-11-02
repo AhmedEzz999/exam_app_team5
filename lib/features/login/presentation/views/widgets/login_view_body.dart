@@ -1,8 +1,11 @@
+import 'package:exam_app/core/constants/app_routes/app_routes.dart';
 import 'package:exam_app/core/constants/app_strings/app_strings.dart';
 import 'package:exam_app/features/login/presentation/view_models/cubit/login_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../../../core/styles/app_colors.dart';
 import '../../../../../core/utils/validator.dart';
 import '../../../../../core/widgets/custom_button.dart';
@@ -81,11 +84,15 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
               controller: _passwordController,
             ),
             12.verticalSpace,
-            const CustomRememberAndForget(),
+            CustomRememberAndForget(
+              onPressed: () => context.pushNamed(AppRoutes.forgetPasswordRoute),
+            ),
             32.verticalSpace,
             BlocConsumer<LoginCubit, LoginState>(
               listener: (context, state) {
-                if (state is LoginSuccessState) {}
+                if (state is LoginSuccessState) {
+                  context.goNamed(AppRoutes.homeRoute);
+                }
                 if (state is LoginErrorState) {}
               },
               builder: (context, state) {
@@ -106,7 +113,9 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
               child: CustomFixedTextAndClickableText(
                 fixedText: AppStrings.dontHaveAccount,
                 clickableText: AppStrings.signupButton,
-                onTap: () {},
+                onTap: () {
+                  context.pushNamed(AppRoutes.singUpRoute);
+                },
               ),
             ),
           ],

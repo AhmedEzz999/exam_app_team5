@@ -11,7 +11,7 @@ import '../../../features/login/presentation/views/login_view.dart';
 
 class AppRouter {
   static GoRouter goRouter = GoRouter(
-    initialLocation: AppRoutes.forgetPasswordRoute,
+    initialLocation: AppRoutes.singInRoute,
 
     errorBuilder: (context, state) =>
         Scaffold(body: Center(child: Text(AppStrings.errorNavigate))),

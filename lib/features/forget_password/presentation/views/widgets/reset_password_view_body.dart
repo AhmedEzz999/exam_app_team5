@@ -96,9 +96,7 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody>
                   ScaffoldMessenger.of(
                     context,
                   ).showSnackBar(SnackBar(content: Text(state.token)));
-                  GoRouter.of(
-                    context,
-                  ).pushReplacementNamed(AppRoutes.singInRoute);
+                  context.goNamed(AppRoutes.singInRoute);
                 }
                 if (state is ResetPasswordErrorState) {
                   ScaffoldMessenger.of(
