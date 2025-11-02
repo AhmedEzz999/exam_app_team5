@@ -7,4 +7,7 @@ class ApiKeys {
   static const String lastName = 'lastName';
   static const String rePassword = 'rePassword';
   static const String phone = 'phone';
+
+  static const String resetCode = 'resetCode';
+  static const String newPassword = 'newPassword';
 }
