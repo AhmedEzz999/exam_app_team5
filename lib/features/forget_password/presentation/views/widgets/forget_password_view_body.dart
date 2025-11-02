@@ -1,5 +1,4 @@
 import 'package:exam_app/core/constants/app_strings/app_strings.dart';
-import 'package:exam_app/core/styles/app_text_styles.dart';
 import 'package:exam_app/core/utils/validator.dart';
 import 'package:exam_app/core/widgets/custom_button.dart';
 import 'package:exam_app/core/widgets/custom_text_form_field.dart';
@@ -7,8 +6,8 @@ import 'package:exam_app/features/forget_password/presentation/view_models/forge
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../view_models/forget_password/forget_password_events.dart';
+import 'custom_forget_password_info_sectio.dart';
 
 class ForgetPasswordViewBody extends StatefulWidget {
   const ForgetPasswordViewBody({super.key});
@@ -55,32 +54,16 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody>
   Widget build(BuildContext context) {
     return Form(
       key: _globalKey,
-      autovalidateMode: AutovalidateMode.always,
       onChanged: _validateForm,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            40.verticalSpace,
-            Center(
-              child: Text(
-                AppStrings.forgetPassword,
-                style: AppTextStyles.kBlack18Mediam(),
-              ),
+            CustomForgetPasswordInfoSection(
+              title: AppStrings.forgetPassword,
+              subTitle: AppStrings.forgetPasswordDesc,
             ),
-            16.verticalSpace,
-            Center(
-              child: SizedBox(
-                width: 275.w,
-                child: Text(
-                  AppStrings.forgetPasswordDesc,
-                  textAlign: TextAlign.center,
-                  style: AppTextStyles.kGrey14Regular(),
-                ),
-              ),
-            ),
-            24.verticalSpace,
             CustomTextfield(
               hint: AppStrings.emailHint,
               label: AppStrings.emailLabel,

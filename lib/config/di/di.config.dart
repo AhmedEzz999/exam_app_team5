@@ -31,6 +31,8 @@ import '../../features/forget_password/domain/ucecases/verify_reset_otp_usecase.
     as _i492;
 import '../../features/forget_password/presentation/view_models/forget_password/forget_password_cubit.dart'
     as _i201;
+import '../../features/forget_password/presentation/view_models/verify_reset_code/verify_rest_code_cubit.dart'
+    as _i433;
 import '../../features/login/api/api_client/login_api_client.dart' as _i395;
 import '../../features/login/api/data_sources/remote/login_remote_datasource_impl.dart'
     as _i710;
@@ -86,6 +88,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i492.VerifyResetOtpUsecase>(
       () => _i492.VerifyResetOtpUsecase(gh<_i377.ForgetPasswordRepoContract>()),
+    );
+    gh.factory<_i433.VerifyRestCodeCubit>(
+      () => _i433.VerifyRestCodeCubit(gh<_i492.VerifyResetOtpUsecase>()),
     );
     gh.factory<_i420.LoginUsecase>(
       () => _i420.LoginUsecase(loginRepo: gh<_i909.LoginRepoContract>()),

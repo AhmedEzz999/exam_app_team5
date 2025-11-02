@@ -52,4 +52,10 @@ abstract class AppStrings {
   static const String forgetPasswordDesc =
       "Please enter your email associated to your account";
   static const String continueLabel = "Continue";
+  static const String emailVerification = "Email Verification";
+  static const String emailVerificationDesc =
+      " Please enter your code that send to your email address";
+  static const String invalidCode = "Invalid code";
+  static const String didntReceiveCode = "Didn't receive code? ";
+  static const String resent = "Resend";
 }

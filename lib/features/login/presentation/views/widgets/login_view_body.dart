@@ -8,6 +8,7 @@ import '../../../../../core/styles/app_colors.dart';
 import '../../../../../core/styles/app_text_styles.dart';
 import '../../../../../core/utils/validator.dart';
 import '../../../../../core/widgets/custom_button.dart';
+import '../../../../../core/widgets/custom_fixed_clickable_text_widget.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../view_models/cubit/login_cubit.dart';
 import 'remember_and_forget_widget.dart';
@@ -104,23 +105,10 @@ class _LoginViewBodyState extends State<LoginViewBody> with AppValidators {
             ),
             16.verticalSpace,
             Center(
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: AppStrings.dontHaveAccount,
-                      style: AppTextStyles.kBlack16Regular(),
-                    ),
-                    TextSpan(
-                      text: AppStrings.signupButton,
-                      style: AppTextStyles.kBlack12UnderLineRegular().copyWith(
-                        color: AppColors.kPrimaryColor,
-                        fontSize: 16,
-                      ),
-                      recognizer: TapGestureRecognizer()..onTap = () {},
-                    ),
-                  ],
-                ),
+              child: CustomFixedTextAndClickableText(
+                fixedText: AppStrings.dontHaveAccount,
+                clickableText: AppStrings.signupButton,
+                onTap: () {},
               ),
             ),
           ],
