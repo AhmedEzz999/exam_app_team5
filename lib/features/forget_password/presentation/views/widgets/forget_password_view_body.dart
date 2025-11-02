@@ -1,3 +1,4 @@
+import 'package:exam_app/core/constants/app_routes/app_routes.dart';
 import 'package:exam_app/core/constants/app_strings/app_strings.dart';
 import 'package:exam_app/core/utils/validator.dart';
 import 'package:exam_app/core/widgets/custom_button.dart';
@@ -6,6 +7,7 @@ import 'package:exam_app/features/forget_password/presentation/view_models/forge
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import '../../view_models/forget_password/forget_password_events.dart';
 import 'custom_forget_password_info_sectio.dart';
 
@@ -90,9 +92,10 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody>
                   ).showSnackBar(SnackBar(content: Text(state.error)));
                 }
                 if (state is ForgetPasswordSuccessState) {
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(SnackBar(content: Text('Success')));
+                  GoRouter.of(context).pushNamed(
+                    AppRoutes.verifyResetCodeRoute,
+                    extra: state.email,
+                  );
                 }
               },
             ),

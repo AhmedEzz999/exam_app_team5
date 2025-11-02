@@ -19,7 +19,8 @@ mixin PinThemes {
     height: 56,
     textStyle: AppTextStyles.kBlack18Mediam(),
     decoration: BoxDecoration(
-      color: AppColors.kRedErrorColor,
+      color: Colors.transparent,
+      border: Border.all(color: AppColors.kRedErrorColor),
       borderRadius: BorderRadius.circular(10),
     ),
   );

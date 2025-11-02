@@ -1,4 +1,5 @@
 import 'package:exam_app/core/constants/app_routes/app_routes.dart';
+import 'package:exam_app/features/forget_password/presentation/views/reset_password_view.dart';
 import 'package:exam_app/features/home_layout/presentation/views/home_layout_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -10,7 +11,7 @@ import '../../../features/login/presentation/views/login_view.dart';
 
 class AppRouter {
   static GoRouter goRouter = GoRouter(
-    initialLocation: AppRoutes.verifyResetCodeRoute,
+    initialLocation: AppRoutes.forgetPasswordRoute,
 
     errorBuilder: (context, state) =>
         Scaffold(body: Center(child: Text(AppStrings.errorNavigate))),
@@ -33,7 +34,19 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.verifyResetCodeRoute,
         name: AppRoutes.verifyResetCodeRoute,
-        builder: (context, state) => VerifyResetCodeView(),
+
+        builder: (context, state) {
+          String email = state.extra as String;
+          return VerifyResetCodeView(email: email);
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.resetPasswordRoute,
+        name: AppRoutes.resetPasswordRoute,
+        builder: (context, state) {
+          final String email = state.extra as String;
+          return ResetPasswordView(email: email);
+        },
       ),
     ],
   );

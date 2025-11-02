@@ -58,4 +58,7 @@ abstract class AppStrings {
   static const String invalidCode = "Invalid code";
   static const String didntReceiveCode = "Didn't receive code? ";
   static const String resent = "Resend";
+  static const String resetPassword = "Reset password";
+  static const String resetPasswordDesc =
+      "Password must not be empty and must contain 6 characters with upper case letter and one number at least ";
 }

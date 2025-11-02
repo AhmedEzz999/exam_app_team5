@@ -1,11 +1,9 @@
 import 'package:exam_app/core/constants/app_strings/app_strings.dart';
 import 'package:exam_app/features/login/presentation/view_models/cubit/login_events.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/styles/app_colors.dart';
-import '../../../../../core/styles/app_text_styles.dart';
 import '../../../../../core/utils/validator.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_fixed_clickable_text_widget.dart';

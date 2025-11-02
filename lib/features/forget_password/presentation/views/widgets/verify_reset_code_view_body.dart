@@ -1,3 +1,4 @@
+import 'package:exam_app/core/constants/app_routes/app_routes.dart';
 import 'package:exam_app/core/constants/app_strings/app_strings.dart';
 import 'package:exam_app/core/styles/app_colors.dart';
 import 'package:exam_app/core/styles/app_text_styles.dart';
@@ -8,12 +9,14 @@ import 'package:exam_app/features/forget_password/presentation/views/widgets/pin
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
+
 import '../../../../../core/widgets/custom_fixed_clickable_text_widget.dart';
 
 class VerifyResetCodeViewBody extends StatefulWidget {
-  const VerifyResetCodeViewBody({super.key});
-
+  const VerifyResetCodeViewBody({super.key, required this.email});
+  final String email;
   @override
   State<VerifyResetCodeViewBody> createState() =>
       _VerifyResetCodeViewBodyState();
@@ -33,9 +36,9 @@ class _VerifyResetCodeViewBodyState extends State<VerifyResetCodeViewBody>
     return BlocListener<VerifyRestCodeCubit, VerifyRestCodeState>(
       listener: (context, state) {
         if (state is VerifyRestCodeSuccessState) {
-          ScaffoldMessenger.of(
+          GoRouter.of(
             context,
-          ).showSnackBar(SnackBar(content: Text("Success")));
+          ).pushNamed(AppRoutes.resetPasswordRoute, extra: widget.email);
         }
         if (state is VerifyRestCodeErrorState) {
           ScaffoldMessenger.of(
@@ -65,7 +68,7 @@ class _VerifyResetCodeViewBodyState extends State<VerifyResetCodeViewBody>
                           VerifyResetCode(code: _codeController.text),
                         );
                       },
-                      errorPinTheme: defaultPinTheme,
+                      errorPinTheme: errorPinTheme,
                       errorBuilder: (errorText, pin) => Padding(
                         padding: EdgeInsets.only(top: 8.0.h),
                         child: Row(
@@ -85,7 +88,7 @@ class _VerifyResetCodeViewBodyState extends State<VerifyResetCodeViewBody>
                         ),
                       ),
                       errorText: AppStrings.invalidCode,
-                      defaultPinTheme: errorPinTheme,
+                      defaultPinTheme: defaultPinTheme,
                     );
                   },
                 ),

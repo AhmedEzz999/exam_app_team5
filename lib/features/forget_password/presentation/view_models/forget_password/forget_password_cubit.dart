@@ -22,7 +22,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     var result = await _forgetPasswordUsecase(email: email);
     result.fold(
       (error) => emit(ForgetPasswordErrorState(error: error.message)),
-      (success) => emit(ForgetPasswordSuccessState()),
+      (success) => emit(ForgetPasswordSuccessState(email: email)),
     );
   }
 }
