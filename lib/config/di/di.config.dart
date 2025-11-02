@@ -42,9 +42,20 @@ import '../../features/login/data/data_sources/remote/login_remote_data_source_c
     as _i328;
 import '../../features/login/data/repos/login_repo_impl.dart' as _i937;
 import '../../features/login/domain/repos/login_repo_contract.dart' as _i909;
-import '../../features/login/domain/usecases/login_usecase.dart' as _i420;
+import '../../features/login/domain/usecases/login_use_case.dart' as _i1005;
 import '../../features/login/presentation/view_models/cubit/login_cubit.dart'
     as _i421;
+import '../../features/signup/api/api_client/sign_up_api_client.dart' as _i786;
+import '../../features/signup/api/data_sources/remote/sign_up_remote_datasource_impl.dart'
+    as _i542;
+import '../../features/signup/data/datasources/remote/sign_up_remote_data_source_contract.dart'
+    as _i431;
+import '../../features/signup/data/repositories/sign_up_repo_impl.dart' as _i17;
+import '../../features/signup/domain/repositories/sign_up_repo_contract.dart'
+    as _i553;
+import '../../features/signup/domain/usecases/sign_up_use_case.dart' as _i594;
+import '../../features/signup/presentation/view_models/sign_up_cubit.dart'
+    as _i493;
 import '../modules/dio_module/dio_module.dart' as _i624;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -62,6 +73,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i395.LoginApiClient>(
       () => _i395.LoginApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i786.SignUpApiClient>(
+      () => _i786.SignUpApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i161.ForgetPasswordRemoteDataSourceContract>(
       () => _i973.ForgetPasswordRemoteDataSourceImpl(
         gh<_i892.ForgetPasswordApiClient>(),
@@ -75,6 +89,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i328.LoginRemoteDataSourceContract>(
       () => _i710.LoginRemoteDatasourceImpl(
         loginApiClient: gh<_i395.LoginApiClient>(),
+      ),
+    );
+    gh.factory<_i431.SignUpRemoteDataSourceContract>(
+      () => _i542.SignUpRemoteDatasourceImpl(
+        signUpApiClient: gh<_i786.SignUpApiClient>(),
+      ),
+    );
+    gh.factory<_i553.SignUpRepoContract>(
+      () => _i17.SignUpRepoImpl(
+        remoteDataSource: gh<_i431.SignUpRemoteDataSourceContract>(),
       ),
     );
     gh.factory<_i909.LoginRepoContract>(
@@ -94,8 +118,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i433.VerifyRestCodeCubit>(
       () => _i433.VerifyRestCodeCubit(gh<_i492.VerifyResetOtpUsecase>()),
     );
-    gh.factory<_i420.LoginUsecase>(
-      () => _i420.LoginUsecase(loginRepo: gh<_i909.LoginRepoContract>()),
+    gh.factory<_i1005.LoginUseCase>(
+      () => _i1005.LoginUseCase(loginRepo: gh<_i909.LoginRepoContract>()),
+    );
+    gh.factory<_i594.SignUpUseCase>(
+      () => _i594.SignUpUseCase(signUpRepo: gh<_i553.SignUpRepoContract>()),
     );
     gh.factory<_i107.ResetPasswordCubit>(
       () => _i107.ResetPasswordCubit(gh<_i939.ResetPasswordUsecase>()),
@@ -104,7 +131,10 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i201.ForgetPasswordCubit(gh<_i982.ForgetPasswordUsecase>()),
     );
     gh.factory<_i421.LoginCubit>(
-      () => _i421.LoginCubit(gh<_i420.LoginUsecase>()),
+      () => _i421.LoginCubit(gh<_i1005.LoginUseCase>()),
+    );
+    gh.factory<_i493.SignUpCubit>(
+      () => _i493.SignUpCubit(gh<_i594.SignUpUseCase>()),
     );
     return this;
   }

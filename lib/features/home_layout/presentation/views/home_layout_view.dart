@@ -1,7 +1,7 @@
-import 'package:exam_app/features/explore/presentation/views/explore_view.dart';
-import 'package:exam_app/features/home_layout/helper/home_layout_enum.dart';
-import 'package:exam_app/features/profile/presentation/views/profile_view.dart';
-import 'package:exam_app/features/result/presentation/views/result_view.dart';
+import '../../../explore/presentation/views/explore_view.dart';
+import '../../helper/home_layout_enum.dart';
+import '../../../profile/presentation/views/profile_view.dart';
+import '../../../result/presentation/views/result_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_strings/app_strings.dart';
@@ -22,7 +22,7 @@ class _HomeLayoutViewState extends State<HomeLayoutView> {
   @override
   void initState() {
     _homeLayoutEnum = HomeLayoutEnum.explore;
-    _screens = [ExploreView(), ResultView(), ProfileView()];
+    _screens = [const ExploreView(), const ResultView(), const ProfileView()];
     super.initState();
   }
 

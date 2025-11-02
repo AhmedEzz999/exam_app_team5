@@ -1,58 +1,48 @@
 import 'package:flutter/material.dart';
-
 import '../styles/app_colors.dart';
-import '../styles/app_text_styles.dart';
 
 class CustomTextfield extends StatelessWidget {
   const CustomTextfield({
     required this.hint,
     required this.label,
     required this.controller,
-    this.autovalidateMode,
-    super.key,
+    required this.validator,
     this.isPassword = false,
-    this.isValid = true,
-    this.validator,
-    this.onEditingComplete,
+    this.keyboardType,
+    this.textInputAction,
+    super.key,
   });
+
   const CustomTextfield.password({
     required this.hint,
     required this.label,
     required this.controller,
+    required this.validator,
     this.isPassword = true,
-    this.autovalidateMode,
+    this.keyboardType,
+    this.textInputAction,
     super.key,
-    this.validator,
-    this.onEditingComplete,
-    this.isValid = true,
   });
+
   final String hint;
   final String label;
   final TextEditingController controller;
   final String? Function(String?)? validator;
-  final AutovalidateMode? autovalidateMode;
-  final Function()? onEditingComplete;
   final bool? isPassword;
-  final bool? isValid;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: isPassword!,
       cursorColor: AppColors.kBlackColor,
       controller: controller,
+      obscureText: isPassword ?? false,
       validator: validator,
+      keyboardType: keyboardType ?? TextInputType.text,
       autocorrect: false,
-      autovalidateMode: autovalidateMode,
-      decoration: InputDecoration(
-        hintText: hint,
-        labelText: label,
-        labelStyle: isValid!
-            ? AppTextStyles.kGrey12Regular()
-            : AppTextStyles.kGrey12Regular().copyWith(
-                color: AppColors.kRedErrorColor,
-              ),
-      ),
+      textInputAction: textInputAction ?? TextInputAction.next,
+      decoration: InputDecoration(hintText: hint, labelText: label),
     );
   }
 }

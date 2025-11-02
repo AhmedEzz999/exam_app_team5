@@ -1,16 +1,16 @@
-import 'package:exam_app/core/constants/app_routes/app_routes.dart';
-import 'package:exam_app/core/constants/app_strings/app_strings.dart';
-import 'package:exam_app/core/widgets/custom_loading_widget.dart';
-import 'package:exam_app/features/login/presentation/view_models/cubit/login_events.dart';
+import '../../../../../core/constants/app_strings/app_strings.dart';
+import '../../../../../core/styles/app_text_styles.dart';
+import '../../view_models/cubit/login_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../../core/utils/validator.dart';
+import '../../../../../core/constants/app_routes/app_routes.dart';
+import '../../../../../core/utils/validators.dart';
 import '../../../../../core/widgets/custom_button.dart';
+import '../../../../../core/widgets/custom_loading_widget.dart';
 import '../../../../../core/widgets/custom_fixed_clickable_text_widget.dart';
-import '../../../../../core/widgets/custom_text_form_field.dart';
+import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../core/widgets/custom_toast_widget.dart';
 import '../../view_models/cubit/login_cubit.dart';
 import 'remember_and_forget_widget.dart';
@@ -27,7 +27,8 @@ class _LoginViewBodyState extends State<LoginViewBody>
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
   late GlobalKey<FormState> _globalKey;
-  bool _isButtonEnabled = false;
+  bool _isButtonEnabled = true;
+  bool _hasPressedButton = false;
 
   @override
   void initState() {
@@ -44,20 +45,32 @@ class _LoginViewBodyState extends State<LoginViewBody>
     super.dispose();
   }
 
-  void _validateForm() {
-    final bool isValid = _globalKey.currentState?.validate() ?? false;
+  void _validateSignInForm() {
+    final bool isFormValid = _globalKey.currentState?.validate() ?? false;
 
-    if (isValid != _isButtonEnabled) {
+    if (isFormValid != _isButtonEnabled) {
       setState(() {
-        _isButtonEnabled = isValid;
+        _isButtonEnabled = isFormValid;
       });
     }
   }
 
   void _submitLogin() {
-    context.read<LoginCubit>().doIntent(
-      Login(email: _emailController.text, password: _passwordController.text),
-    );
+    final bool isFormValid = _globalKey.currentState?.validate() ?? false;
+
+    setState(() {
+      _hasPressedButton = true;
+    });
+
+    if (isFormValid) {
+      context.read<LoginCubit>().doIntent(
+        Login(email: _emailController.text, password: _passwordController.text),
+      );
+    } else {
+      setState(() {
+        _isButtonEnabled = false;
+      });
+    }
   }
 
   @override
@@ -65,8 +78,8 @@ class _LoginViewBodyState extends State<LoginViewBody>
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Form(
-        onChanged: _validateForm,
-        autovalidateMode: AutovalidateMode.disabled,
+        onChanged: _hasPressedButton ? _validateSignInForm : null,
+
         key: _globalKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -97,14 +110,17 @@ class _LoginViewBodyState extends State<LoginViewBody>
                   context.goNamed(AppRoutes.homeRoute);
                 }
                 if (state is LoginErrorState) {
-                  errorToast(context, title: state.error);
+                  errorToast(context, title: state.errorMessage);
                 }
               },
               builder: (context, state) {
                 return state is LoginLoadingState
-                    ? CustomLoadingWidget()
+                    ? const CustomLoadingWidget()
                     : CustomElevatedButton(
-                        buttonText: AppStrings.loginButton,
+                        widget: Text(
+                          AppStrings.loginButton,
+                          style: AppTextStyles.kBlack18Mediam(),
+                        ),
                         onPressed: _isButtonEnabled ? _submitLogin : null,
                       );
               },
@@ -113,9 +129,9 @@ class _LoginViewBodyState extends State<LoginViewBody>
             Center(
               child: CustomFixedTextAndClickableText(
                 fixedText: AppStrings.dontHaveAccount,
-                clickableText: AppStrings.signupButton,
+                clickableText: AppStrings.signUpButton,
                 onTap: () {
-                  context.pushNamed(AppRoutes.singUpRoute);
+                  context.pushNamed(AppRoutes.signUpRoute);
                 },
               ),
             ),

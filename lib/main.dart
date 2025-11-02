@@ -9,5 +9,5 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
   Bloc.observer = MyBlocObserver();
-  runApp(ExamApp());
+  runApp(const ExamApp());
 }

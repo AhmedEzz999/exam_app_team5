@@ -7,16 +7,15 @@ import '../../api_client/login_api_client.dart';
 
 @Injectable(as: LoginRemoteDataSourceContract)
 class LoginRemoteDatasourceImpl extends LoginRemoteDataSourceContract {
-  final LoginApiClient loginApiClient;
-
   LoginRemoteDatasourceImpl({required this.loginApiClient});
+  final LoginApiClient loginApiClient;
   @override
   Future<LoginResponse> login({
     required String email,
     required String password,
   }) {
     return loginApiClient.login({
-      ApiKeys.emain: email,
+      ApiKeys.email: email,
       ApiKeys.password: password,
     });
   }

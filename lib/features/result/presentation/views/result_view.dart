@@ -5,6 +5,6 @@ class ResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Result View"));
+    return const Center(child: Text('Result View'));
   }
 }

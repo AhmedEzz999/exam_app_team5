@@ -21,8 +21,58 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    # Consistent quotes
+    prefer_single_quotes: true
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+    # Avoid print statements
+    avoid_print: true
+
+    # Avoid empty catch blocks
+    empty_catches: true
+
+    # Prefer const constructors
+    prefer_const_constructors: true
+
+    # Prefer final for non-reassigned locals and fields
+    prefer_final_locals: true
+    prefer_final_fields: true
+
+    # Avoid redundant null checks
+    unnecessary_null_checks: true
+
+    # Prefer const for immutable literals
+    prefer_const_literals_to_create_immutables: true
+
+    # Avoid reassigning parameters
+    parameter_assignments: false
+
+    # Prefer relative imports in lib/
+    prefer_relative_imports: true
+
+    # Catch unused this/variables/parameters/imports
+    unnecessary_this: true
+
+    # ========================
+    # ADDITIONAL RULES
+    # ========================
+
+    # Required named parameters first
+    always_put_required_named_parameters_first: true
+
+    # Don't return null for a Future
+    avoid_returning_null_for_future: true
+
+    # Avoid positional booleans
+    avoid_positional_boolean_parameters: true
+
+    # Put class constructors first
+    sort_constructors_first: true
+
+    # Prefer final in for-each loops
+    prefer_final_in_for_each: true
+
+    # Avoid types on closure parameters
+    avoid_types_on_closure_parameters: true
+
+    # Always type uninitialized variables
+    prefer_typing_uninitialized_variables: true

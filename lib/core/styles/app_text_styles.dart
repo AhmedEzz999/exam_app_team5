@@ -16,11 +16,15 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.kBlackColor,
   );
-  static TextStyle kBlack13Regular() => GoogleFonts.inter(
-    fontSize: 13.sp,
+
+  static TextStyle kBlack18Regular() => GoogleFonts.inter(
+    fontSize: 18.sp.sp,
     fontWeight: FontWeight.w400,
     color: AppColors.kBlackColor,
   );
+
+  static TextStyle k16Medium() =>
+      GoogleFonts.roboto(fontSize: 16.sp, fontWeight: FontWeight.w500);
 
   static TextStyle kGrey14Regular() => GoogleFonts.inter(
     fontSize: 14.sp,
@@ -48,8 +52,13 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.kPrimaryColor,
   );
-  static TextStyle k16Medium() =>
-      GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.w500);
+
+  static TextStyle kBlack13Regular() => GoogleFonts.inter(
+    fontSize: 13.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.kBlackColor,
+  );
+
   static TextStyle kGrey12Regular() => GoogleFonts.roboto(
     fontSize: 12.sp,
     fontWeight: FontWeight.normal,
